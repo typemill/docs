@@ -18,5 +18,5 @@ Typemill supports the following browsers:
 - IE11 (basic tests)
 - Safari (not tested)
 
-I use Firefox and XAMPP for development. If you have problems with other environments, then please let me know and add a new issue on [github](https://github.com/trendschau/typemill).
+I use Firefox and XAMPP for development. If you have problems with other environments, then please let me know and add a new issue on [github](https://github.com/typemill/typemill).
 
