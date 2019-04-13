@@ -2,6 +2,18 @@
 
 This is the version history with some release notes.
 
+## Version 1.2.12: Content Blocks Everywhere
+
+_Release date: 13.04.2019_
+
+The visual editor was a bit limited till now: You could only add new content blocks at the end of the page and after that move the paragraph via drag and drop to the right spot. With version 1.2.12 we eliminated this important limitation and now you can add new content blocks everywhere!!! All changes of this version:
+
+* Visual editor: Add content blocks everywhere.
+* Visual editor: Adjusted to vue logic, html- and markdown-content is loaded as JSON and bound to the DOM.
+* Visual editor: improved design.
+* min- and max-attributes are added to field-builder
+* The TYPEMILL-documentation is now a public github-repository: https://github.com/typemill/docs/
+
 ## Version 1.2.11: Table Component
 
 _Release date: 19.02.2019_
