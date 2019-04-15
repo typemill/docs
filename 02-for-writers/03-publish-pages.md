@@ -1,11 +1,11 @@
 # Publish Pages
 
-Nearly all content management systems provide standard features like ...
+Nearly all content management systems provide standard features like this:
 
 * save a draft
 * publish a page
 * unpublish a page and
-* delete a page.
+* delete a page
 
 But sometimes this is not enough. Imagine a good running content-page that needs some updates and revisions. Many CMS don't have a solution for this, so you have to depublish the page, change it and then publish it again. This is pretty odd, and if the page is offline for several days it might even loose its ranking in google. 
 
