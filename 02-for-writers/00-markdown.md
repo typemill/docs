@@ -14,7 +14,7 @@ This is a paragraph and now we create an unordered list:
 - A last item
 ````
 
-Markdown is used by a lot of technology platforms like GitHub or StackOverflow, but is also entering the non technical mainstream with popular tools like Trello or Slack.
+Markdown is used by a lot of technology platforms like GitHub or StackOverflow. And with popular tools like Trello or Slack it is also entering the non technical mainstream.
 
 ## Markdown Quick Reference
 
