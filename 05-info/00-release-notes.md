@@ -2,6 +2,24 @@
 
 This is the version history with some release notes.
 
+## Version 1.2.13: Definition lists and horizontal lines
+
+_Release date: 04.05.2019_
+
+This release includes:
+
+* Visual editor: A new component for defintion lists.
+* Visual editor: A new component for horizontal lines.
+* Visual editor: Improved headline component
+* Visual editor: some design fixes for components (borders)
+* Visual editor: removed initial overlay on pageload
+* Visual editor: fixed bug with wrong data after drag & drop
+* Visual editor: refactored drag & drop for content blocks
+* Refactored definition lists in backend code
+* Fixed error with update notice
+* updated all javascript libraries
+* created a new landing page for typemill.net
+
 ## Version 1.2.12: Content Blocks Everywhere
 
 _Release date: 13.04.2019_
