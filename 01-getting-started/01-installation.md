@@ -25,7 +25,7 @@ There are two ways to copy TYPEMILL to your local computer:
 1. Go to [typemill.net](http://www.typemill.net), download the zip-archive and unzip it.
 2. **Or** use GitHub and Composer.
 
-If you use GitHub, then you can find the repository of TYPEMILL on [github/trendschau/typemill](https://github/trendschau/typemill). Just open the command line and type
+If you use GitHub, then you can find the repository of TYPEMILL on [github.com/trendschau/typemill](https://github.com/trendschau/typemill). Just open the command line and type
 
 ````
 git clone "https://github.com/trendschau/typemill.git"
