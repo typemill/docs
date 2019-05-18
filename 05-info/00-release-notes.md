@@ -2,6 +2,22 @@
 
 This is the version history with some release notes.
 
+## Version 1.2.14: Magic Table of Contents
+
+_Release date: 18.05.2019_
+
+This release includes:
+
+* Visual editor: New Table of Contents component that updates on the fly.
+* Visual editor: Fixed some html errors.
+* Design: The admin area got a facelift, switched to green instead of red.
+* Improved some stuff in background to show status of pages in admin (edited/published)
+* Login: Saves timestamp of last login now
+* Login: Added hint to bookmark the login page
+* Errors: Added error reporting, so that no errors are displayed by default. Use DisplayErrorDetails: true to switch on.
+* Created a new multi-step build script to improve deployment.
+* First automated tests with cypress.io.
+
 ## Version 1.2.13: Definition lists and horizontal lines
 
 _Release date: 04.05.2019_
