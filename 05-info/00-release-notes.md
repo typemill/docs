@@ -2,7 +2,7 @@
 
 This is the version history with some release notes.
 
-## Version 1.2.14: Math Refactored
+## Version 1.2.15: Math Refactored
 
 _Release date: 05.06.2019_
 
