@@ -2,6 +2,24 @@
 
 This is the version history with some release notes.
 
+## Version 1.2.14: Math Refactored
+
+_Release date: 05.06.2019_
+
+This release includes:
+
+* Visual editor: A new math component.
+* Parsedown: Changed syntax for math (see below).
+* Navigation: Introduced status modified.
+* Navigation: Change color of item on the fly according to status: published (green), modified (orange), not published (red).
+* Navigation: Fixed homepage item, so that status and active is visible.
+* Settings: Whitelisted settings in settings.yaml, so no pathes are stored (produced error when moved typemill to other folder). 
+* Login: Changed color of link.
+* Videos: refactored video embed script and changed link to youtube-nocookie.com.
+* Testing: Added cypress tests for system settings.
+
+The syntax for math changed, so the old backtipp-syntax for inline math and display math is not valid anymore. The new syntax is compatible to pandoc and many other systems. Check the details on the markdown test page: https://typemill.net/info/markdown-test 
+
 ## Version 1.2.14: Magic Table of Contents
 
 _Release date: 18.05.2019_
