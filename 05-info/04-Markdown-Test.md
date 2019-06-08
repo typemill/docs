@@ -277,27 +277,31 @@ Which will result in:
 	echo $welcome;
 ?>  
 ````
-
 ## Math
 
-Please activate the math-plugin to use mathematical expressions with LaTeX syntax. You can choose between MathJax or the newer KaTeX library. MathJax is included from a CDN, KaTeX is included in the plugin. So if you don't want to fetch code from a CDN, use KaTeX instead. The markdown syntax in TYPEMILL is the same for both libraries.
+Please activate the math-plugin to use mathematical expressions. You can choose between MathJax or the newer KaTeX library. If you don't want to fetch code from a CDN, use KaTeX instead. The markdown syntax in TYPEMILL is the same for both libraries: 
 
 ````
-Use inline LaTeX  ``x = \int_{0^1}^1(-b \pm \sqrt{b^2-4ac})/(2a)`` with two backtipps like this.
+Use inline $x = \int_{0^1}^1(-b \pm \sqrt{b^2-4ac})/(2a)$ math
+Use inline \(x = \int_{0^1}^1(-b \pm \sqrt{b^2-4ac})/(2a)\) math.
 ````
 
-Use inline LaTeX ``x = \int_{0^1}^1(-b \pm \sqrt{b^2-4ac})/(2a)`` like this. 
+Use inline math $x = \int_{0^1}^1(-b \pm \sqrt{b^2-4ac})/(2a)$ like this. 
 
 ````
-Or specify latex sytnax for a code-block like this:  
-​````latex
+Use display math like this 
+$$
 x = \int_{0^1}^1(-b \pm \sqrt{b^2-4ac})/(2a)
-​````  
+$$
+or this
+\[
+x = \int_{0^1}^1(-b \pm \sqrt{b^2-4ac})/(2a)
+\]
 ````
 
-​```latex
+$$
 x = \int_{0^1}^1(-b \pm \sqrt{b^2-4ac})/(2a)
-​```
+$$
 
 [^1]: Thank you for scrolling.
 [^2]: This is the end of the page.
