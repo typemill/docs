@@ -18,6 +18,8 @@ All settings and users are stored in the folder `settings`. You can manually edi
 
 If you need more detailed instructions, please read on.
 
+[TOC]
+
 ## Download
 
 There are two ways to copy TYPEMILL to your local computer:
@@ -58,7 +60,40 @@ If you run your website with https (recommended) or if you want to redirect www-
 
 ## Run Locally
 
-If you are a developer and if you want to run TYPEMILL locally, then simply download TYPEMILL (zip or git) and visit your local folder like `localhost/typemill`. No additional work is required.
+If you are a developer and if you want to run TYPEMILL locally, then simply download TYPEMILL (zip or git) and visit your local folder like `localhost/typemill`. If your server is configured correctly, then no additional work is required.
+
+## Run on Linux/Ubuntu
+
+If you run typmill locally with linux, then you have to double check if mod-rewrite is configured correctly. Please follow the steps described in this article: https://hostadvice.com/how-to/how-to-enable-apache-mod_rewrite-on-an-ubuntu-18-04-vps-or-dedicated-server/
+
+Enable the mod-rewrite modules
+
+````
+    $ sudo a2enmod rewrite 
+    $ sudo a2enmod actions 
+````
+
+Then open your virtual host file:
+
+````
+    $ sudo xed /etc/apache2/sites-available/000-default.conf
+````
+
+And add this configuration inside your virtual-host-tag: 
+
+````
+    <Directory /var/www/html>
+            Options Indexes FollowSymLinks MultiViews
+            AllowOverride All
+            Require all granted
+    </Directory>
+````
+
+Finally restart your server:
+
+````
+    $ sudo systemctl restart apache2
+````
 
 ## Error Reporting
 
