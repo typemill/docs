@@ -62,8 +62,24 @@ The same for JavaScript: It is recommended to place all JavaScript at the end of
    {{ assets.renderJS() }}
 		
  {% endblock %}		
-</body>   
+</body>
 ````
+
+## Widgets
+
+Themes should implement a widgetized zone like this somewhere:
+
+````
+{% if widgets %}
+    {% for index,widget in widgets %}
+        <aside id="{{ index }}">
+	    {{ widget }}					
+	</aside>
+    {% endfor %}
+{% endif %}
+````
+
+Widgets are simply some html-snippets, that can be injected by plugins. A good example for a widget is a search-field, that is added with the existing search-plugin.
 
 ## Render Markdown
 
