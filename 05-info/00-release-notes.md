@@ -2,6 +2,21 @@
 
 This is the version history with some release notes.
 
+## Version 1.2.16: Footnotes and Search
+
+_Release date: 22.10.2019_
+
+This release includes:
+
+* Visual Editor: Footnotes are now included and editable
+* Events: Added events for publish, depublish, delete and sort a page.
+* Themes: Added Axios (ajax calls) as an asset that can be activated for themes.
+* Themes: Added Tachyons (atomic CSS library) as an asset that can be activated for themes.
+* Themes: Added a simple widgetized zone for a theme that can be used by plugins.
+* Plugin: Added a search plugin.
+
+You should update the system and the theme.
+
 ## Version 1.2.15: Math Refactored
 
 _Release date: 05.06.2019_
