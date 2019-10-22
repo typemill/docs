@@ -3,7 +3,8 @@
 TYPEMILL provides some useful helper Twig helper functions for your theme: 
 
 * A **base url** that returns the root url
-* **Asset tags** that allow plugins to inject code
+* The **asset tags** allow plugins to inject css and js-ressources or inline-code.
+* A **widget tag** allow plugins to inject html-snippets like a search field.
 * A **markdown render function** to render additional markdown content in your theme.
 
 ## Base URL
