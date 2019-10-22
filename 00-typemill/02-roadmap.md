@@ -20,11 +20,15 @@ Here are some **milestones** of the past:
 * Introduced frontend forms and added videos (youtube) (v. 1.2.9)
 * Editor: Edit other block formats visually (v. 1.2.10)
 * Editor: Edit tables visually (v. 1.2.11)
+* Editor: Add content blocks above existing blocks (v. 1.2.12)
+* Editor: Create definition-lists visually (v. 1.2.13)
+* Editor: Add a table of contents that changes on the fly (v. 1.2.14)
+* Editor & Plugin: Add math with the pandoc syntax (v. 1.2.15)
+* Editor & Plugin: Search plugin and footnotes in visual mode (v. 1.2.16)
 
 And here is the **roadmap** of the future:
 
-* Editor: Edit inline formats like links, bold and italic (v. 1.2.12)
-* Editor: Add content blocks above existing blocks (v. 1.2.13)
+* Editor: Edit inline formats like links, bold and italic (v. 1.2.17 - 1.2.19)
 * Add meta-data to a page (v. 1.3.0)
 * Add more plugins (v. 1.3.1)
 * Add more themes (v. 1.3.2)
@@ -39,4 +43,3 @@ In the long run, TYPEMILL should become a lightweight but fully featured publish
 * Plugins for search, comments, RSS, E-Mails, newsletters and much more.
 
 If you miss a feature or if you found a bug, please report it on [GitHub](https://github.com/trendschau/typemill).
-
