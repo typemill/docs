@@ -64,7 +64,7 @@ If you are a developer and if you want to run TYPEMILL locally, then simply down
 
 ## Run on Linux/Ubuntu
 
-If you run typmill locally with linux, then you have to double check if mod-rewrite is configured correctly. Please follow the steps described in this article: https://hostadvice.com/how-to/how-to-enable-apache-mod_rewrite-on-an-ubuntu-18-04-vps-or-dedicated-server/
+Some users reported errors with linux- and ubuntu-systems. If you run typmill locally with linux, then you have to double check if mod-rewrite is configured correctly. If you face any problems, please follow the steps described in this article: https://hostadvice.com/how-to/how-to-enable-apache-mod_rewrite-on-an-ubuntu-18-04-vps-or-dedicated-server/
 
 Enable the mod-rewrite modules
 
