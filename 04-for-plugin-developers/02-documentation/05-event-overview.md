@@ -10,6 +10,7 @@ This is a list of all events that TYPEMILL fires during the life cycle. The orde
 | -------------------- | ---------------------------------------- | ------------------------------------ |
 | onPluginsLoaded      | TYPEMILL has loaded all plugins.         | No data                              |
 | onSettingsLoaded     | TYPEMILL has loaded and merged all settings. This includes the basic app settings, all plugin settings and the individual user settings. | Settings (a slim-object)             |
+| onSessionSegmentsLoaded      | TYPEMILL has loaded all all session segments which should start a session.         | Empty Array (array) |
 | onTwigLoaded         | TYPEMILL has loaded the template engine Twig. | No data                              |
 | onPagetreeLoaded     | TYPEMILL has scanned the content folder and has generated the content structure. | Content structure (array of objects) |
 | onBreadcrumbLoaded   | TYPEMILL has created a breadcrumb for the page. | Breadcrumb (array)                   |
@@ -18,6 +19,11 @@ This is a list of all events that TYPEMILL fires during the life cycle. The orde
 | onContentArrayLoaded | TYPEMILL has transformed the page content into an array. | Page content (array)                 |
 | onHtmlLoaded         | TYPEMILL has transformed the markdown content to HTML (with the Parsedown library). | Page content (html syntax)           |
 | onPageReady          | TYPEMILL has collected all data for the page and will send it to the template in the next step. | All page data (array)                |
+| onPagePublished     | TYPEMILL has published a content page.    | Page item (obejct)       |
+| onPageUnpublished     | TYPEMILL has unpublished a content page.    | Page item (object)       |
+| onPageDeleted     | TYPEMILL has deleted a page.    | Page item (object)       |
+| onPageSorted     | TYPEMILL has sorted/moved a page.    | Input Params with old and new position (array)       |
+
 
 If TYPEMILL passes data to your subscriber method, then you can get the data, use the data, manipulate the data and return the data to the app. You can do this with two simple methods: `getData()` and `setData()`.
 
