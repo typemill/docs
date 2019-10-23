@@ -16,6 +16,8 @@ public function myPluginMethod()
 
 Here is a list of all helper methods, that the `Plugin`-class provides:
 
+[TOC]
+
 ## getParams
 
 Get the params of a request. DO NOT use it to get post-data e.g. from form. Only use it to get the query params of an url.
