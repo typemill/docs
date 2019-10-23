@@ -16,6 +16,67 @@ public function myPluginMethod()
 
 Here is a list of all helper methods, that the `Plugin`-class provides:
 
+## getParams
+
+Get the params of a request. DO NOT use it to get post-data e.g. from form. Only use it to get the query params of an url.
+
+````
+$this->getParams();
+````
+BE VERY CAREFUL with this, because you get the raw input or query data. You are responsible to check and validate these data before you use them. If you create some kind of form in your plugin (e.g. a contact form), then typemill cares about the input-validation and you can get this validated input with the method `getFormData`.
+
+## getFormData
+
+Get the data of a post request, for example when the user submitted a form in the frontend. Typemill will validate and check this data and store it temporary into a file. To get the correct data, you have to enter the name of your plugin as a parameter.
+
+````
+$inputData = $this->getFormData($pluginname);
+````
+
+If Typemill thinks that data have been submitted by a bot, then it simply returns the string "bot". So you should always check for this string first before you try to work with the data.
+
+## generateForm
+
+Generates an input form based on yaml-configuration and returns the form-html. You have to pass the name of your plugin. 
+
+````
+$form = $this->generateForm($pluginname);
+````
+
+We will create a separate tutorial for this in future. 
+
+## returnJson
+
+Return data in json-format. This is usefull if you want to create a plugin with API-functionalities.
+
+````
+$this->returnJson($arrayWithData);
+````
+
+## returnJsonError
+
+Return a json-response with a 400 error.
+
+````
+$this->returnJsonError($arrayWithData);
+````
+
+## getSettings
+
+Get the settings of the whole application
+
+````
+$settings = $this->getSettings();
+````
+
+## getPluginSettings
+
+Get the settings of a specific plugin
+
+````
+$pluginSettings = $this->getPluginSettings($pluginname);
+````
+
 ## addJS
 
 With the function addJS, you can add an external or internal JavaScript ressource.
@@ -67,6 +128,33 @@ All this functions only work, if the template has implemented the twig-functions
 ````
 
 Check the chapter about [theme design](/for-theme-developers) for more informations.
+
+## activateVue
+
+This will add the vue library to your frontend assets. Vue is used by the typemill author interface so feel free to use it in frontend, too.
+
+````
+$this->activateVue();
+````
+
+## activateAxios
+
+Axios is the favourite library for AJAX calls. Axios is used by Typemill and you can easily use it in your plugin or frontend, too. 
+
+````
+$this->activateAxios();
+````
+
+In frontend you can use the constant variable `myaxios` which is already initialized with the baseUrl of the application, so you don't have to care about that and can make your calls with relative urls.
+
+
+## activateTachyons
+
+Tachyons is a very lightweight library for atomic or functional CSS, similar to the popular tailwind library, but a bit older and much smaller. It is planned to rewrite the pretty chaotic CSS of Typemill with tachyons in future. If you want to use it for your frontend (themes or plugins), just activate it with
+
+````
+$this->activateTachyons();
+````
 
 ## getPath
 
@@ -181,3 +269,10 @@ And again, you can use this function in your template like this:
 
 Please check the [Twig-Documentation](https://twig.symfony.com/doc/2.x/) to learn more about this. 
 
+## markdownToHtml
+
+If you want to render some markdown as html in your plugin, then you can use the function markdownToHtml like this:
+
+````
+$html = $this->markdownToHtml('## My Markdown Headline');
+````
