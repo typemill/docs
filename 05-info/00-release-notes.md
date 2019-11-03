@@ -2,6 +2,20 @@
 
 This is the version history with some release notes.
 
+
+## Version 1.2.17: Inline Formats
+
+_Release date: 03.11.2019_
+
+This release includes:
+
+* Visual Editor: Format text as strong, emphasis or inline code.
+* Fix: Copyright and year are stored in settings now.
+* Fix: Error message when author deletes a folder with a folder in it.
+* Fix: Logout user if he deletes his own account.
+* Enhancement: Added more system checks for system setup.
+* Enhancement: Added cypress-tests for theme options.
+
 ## Version 1.2.16: Footnotes and Search
 
 _Release date: 22.10.2019_
