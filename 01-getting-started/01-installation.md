@@ -1,13 +1,13 @@
 # Installation
 
-The installation of TYPEMILL is as simple as that: 
+The installation of TYPEMILL is as simple as this: 
 
 - Go to [typemill.net](http://www.typemill.net) and download the TYPEMILL files.
-- Unzip the files and upload them to your web-server.
+- Unzip the files, and upload them to your web-server.
 - Go to `www.your-typemill-website.com/setup` and create an initial user.
-- Login and configure your system, your themes and your plugins. 
+- Login and configure your system, your themes, and your plugins. 
 
-Don't forget to make some folders and files writable (set permission to `774`):
+Don't forget to make these folders and files writable (set permission to `774`):
 
 - `\cache`
 - `\settings`
@@ -27,19 +27,19 @@ There are two ways to copy TYPEMILL to your local computer:
 1. Go to [typemill.net](http://www.typemill.net), download the zip-archive and unzip it.
 2. **Or** use GitHub and Composer.
 
-If you use GitHub, then you can find the repository of TYPEMILL on [github.com/trendschau/typemill](https://github.com/trendschau/typemill). Just open the command line and type
+If you use GitHub, then you can find the repository of TYPEMILL on [github.com/trendschau/typemill](https://github.com/trendschau/typemill). Just open the command line and type:
 
 ````
 git clone "https://github.com/trendschau/typemill.git"
 ````
 
-The github-version of TYPEMILL ships without libraries. You have to download all libraries with composer, otherwise TYPEMILL won't run. If you don't have composer installed yet, head over to the [composer website](https://getcomposer.org/) and install it. After that, open your command line, go to your TYPEMILL folder and type:
+The GitHub version of TYPEMILL ships without libraries. You have to download all libraries with Composer, otherwise TYPEMILL won't run. If you don't have Composer installed yet, head over to the [Composer website](https://getcomposer.org/), and install it. After that, open your command line, go to your TYPEMILL folder and type:
 
 ````
 composer update
 ````
 
-The exact command might vary depending on your local composer installation and configuration. If you face any problems, please check the documentation of composer.
+The exact command might vary depending on your local composer installation and configuration. If you face any problems, please check the Composer documentation.
 
 That's it!
 
@@ -52,11 +52,11 @@ The following three folders and all files and folders inside must be writable:
 - `\content`
 - `\media`
 
-To make the folders and files writable, use your ftp programm, click on the folder, choose `permissions` and change the permission to `744`. Use the recursive permission for all containing files and folders. If `744` does not work, try `774`.
+To make the folders and files writable, use your ftp programm, click (or right-click, depending on your software) on the folder, choose `permissions` and change the permission to `744`. Use the recursive permission for all containing files and folders. If `744` does not work, try `774`.
 
 ## htaccess 
 
-If you run your website with https (recommended) or if you want to redirect www-urls to non-www urls, then please check the htaccess file in the root folder. There are several use cases already prepared and you can simply uncomment them, if needed. 
+If you run your website with HTTPS (recommended), or if you want to redirect www-URLs to non-www URLs, then please check the htaccess file in the root folder. There are several use cases already prepared, and you can simply uncomment them, if needed. 
 
 ## Run Locally
 
@@ -64,9 +64,9 @@ If you are a developer and if you want to run TYPEMILL locally, then simply down
 
 ## Run on Linux/Ubuntu
 
-Some users reported errors with linux- and ubuntu-systems. If you run typmill locally with linux, then you have to double check if mod-rewrite is configured correctly. If you face any problems, please follow the steps described in this article: https://hostadvice.com/how-to/how-to-enable-apache-mod_rewrite-on-an-ubuntu-18-04-vps-or-dedicated-server/
+Some users reported errors with Linux/Ubuntu. If you run TYPEMILL locally on Linux, then you have to double check if mod-rewrite is configured correctly. If you face any problems, please follow the steps described in this article: https://hostadvice.com/how-to/how-to-enable-apache-mod_rewrite-on-an-ubuntu-18-04-vps-or-dedicated-server/
 
-Enable the mod-rewrite modules
+Enable the mod-rewrite modules:
 
 ````
     $ sudo a2enmod rewrite 
@@ -89,7 +89,7 @@ And add this configuration inside your virtual-host-tag:
     </Directory>
 ````
 
-Finally restart your server:
+Finally, restart your server:
 
 ````
     $ sudo systemctl restart apache2
@@ -103,5 +103,4 @@ TYPEMILL ships with error reporting off, because errors should never been displa
 displayErrorDetails: true
 ````
 
-Don`t forget to turn error reporting off again before you deploy your website live.
-
+Don't forget to turn error reporting off again before you deploy your website live.
