@@ -1,6 +1,6 @@
 # Settings
 
-TYPEMILL provides detailed settings and you have access to nearly all settings in the author panel. You will find everything in the `settings` tab:
+TYPEMILL provides detailed settings, and you have access to nearly all settings in the author panel. You will find everything in the `settings` tab:
 
 * System settings
 * Theme settings
@@ -18,4 +18,3 @@ displayErrorDetails: true
 ````
 
 Don't forget to set it back to `false` before you deploy the website live. It is not secure to show the world your internal errors and many hosters will turn off all public error reports by default.
-
