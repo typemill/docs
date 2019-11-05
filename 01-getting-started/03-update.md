@@ -1,12 +1,12 @@
 # Update
 
-TYPEMILL automatically checks the version of your system, of your themes and of your plugins. If anything is not up to date anymore, then TYPEMILL will add an update banner in the settings area. 
+TYPEMILL automatically checks the version of your system, of your themes, and of your plugins. If anything is not up to date anymore, then TYPEMILL will add an update banner notification in the settings area. 
 
 ## Minor Update
 
-To update TYPEMILL, simply download the latest version of TYPEMILL from the [TYPEMILL website](https://typemill.net) or clone the latest [github-code](https://github.com/trendschau/typemill). Then delete the old `system` folder on your server and upload the new system folder. You don't have to touch any other folders.
+To update TYPEMILL, simply download the latest version of TYPEMILL from the [TYPEMILL website](https://typemill.net) or clone the latest [GitHub code](https://github.com/trendschau/typemill). Then delete the old `system` folder on your server and upload the new system folder. You don't have to touch any other folders.
 
-After you updated your installation, please login to your website and check the new features.
+After you updated your installation, please login to your website and check out the new features.
 
 ## Major Update
 
@@ -21,13 +21,12 @@ Sometimes there are a lot of changes that require a deeper update. You can updat
   * themes
 * Upload the new folders
 
-In very rare cases it might be helpful to create a fresh installation. To do so, just delete the settings folder. Make sure that you have created a backup of your old settings before you delete the live settings. After that you can go to `yourwebsite.com/tm/setup`, create a new user and setup your whole system again. This includes the configure of all your themes and plugins.
+In very rare cases it might be helpful to create a fresh installation. To do so, just delete the settings folder. Make sure that you have created a backup of your old settings before you delete the live settings. After that you can go to `yourwebsite.com/tm/setup`, create a new user, and setup your whole system again. This includes configuring of all your themes and plugins.
 
 ## GitHub and Composer
 
-If you work with GitHub and Composer, then make sure that you **always** make a `composer update` after you uploaded the new system-folder from GitHub. This is essential, because the GitHub-folder does NOT include the vendor folder with all the dependencies that TYPEMILL uses. If you don't update these dependencies with composer, then the system will not run. 
+If you work with GitHub and Composer, then make sure that you **always** run the `composer update` command after you upload the new system-folder from GitHub. This is essential, because the GitHub-folder does NOT include the vendor folder with all the dependencies that TYPEMILL uses. If you don't update these dependencies with Composer, then the system will not run. 
 
 If you download the TYPEMILL from https://typemill.net, then you don't have to worry about this, because the vendor folder with all dependencies is included there.
 
-We decided to skip the vendor folder in GitHub because it constantly caused errors due to some missing libraries.
-
+We decided to skip the vendor folder on GitHub because it constantly caused errors due to some missing libraries.
