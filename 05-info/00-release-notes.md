@@ -3,6 +3,17 @@
 This is the version history with some release notes.
 
 
+## Version 1.2.18: Discard Changes
+
+_Release date: 11.11.2019_
+
+This release includes:
+
+* Visual Editor: Discard changes and set page back to published version.
+* Visual Editor: Inline formats for links and inline math.
+* Visual Editor: Decouple markdown/component detection.
+* Fix: mod_rewrite is not checked anymore.
+
 ## Version 1.2.17: Inline Formats
 
 _Release date: 03.11.2019_
