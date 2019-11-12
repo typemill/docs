@@ -23,8 +23,8 @@ This is a quick reference table. For a detailed reference with examples, please 
 | Markdown                                                     | Result                                  |
 | ------------------------------------------------------------ | --------------------------------------- |
 | `[TOC]`                                                      | Table of content                        |
-| `#`                                                          | Headline first level                    |
-| `######`                                                     | Headline sixth level                    |
+| `#`                                                          | Headline - first level                    |
+| `######`                                                     | Headline - sixth level                    |
 | simple text                                                  | Paragraph                               |
 | `_italic_`                                                   | Italic text                             |
 | `*italic*`                                                   | Italic text                             |
