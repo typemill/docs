@@ -4,9 +4,9 @@ TYPEMILL uses [Markdown](/for-writes/markdown), and you can write pure Markdown 
 
 ![Visual markdown editor of TYPEMILL](/media/visual-editor.gif)
 
-To switch to the visual editor, simply use the "visual mode" button in the publishing options at the bottom of the screen. You can also set the visual mode as your default mode in the settings.
+To switch to the visual editor, simply use the "visual mode" button in the publishing bar at the bottom of the screen. You can also set the visual mode as your default mode in the settings.
 
-The visual editor is still experimental, and some features are missing. But it already helps you to create beautiful pages even if you don't know the Markdown syntax that well. There are buttons for new paragraphs, headlines, lists, quotes, tables, images and even YouTube-videos at the bottom of the page. There is no media library yet, but handling images is pretty easy, as you can see:
+The visual editor is still experimental, and some features are missing. But it already helps you to create beautiful pages even if you don't know the Markdown syntax that well. There are buttons for new paragraphs, headlines, lists, quotes, tables, images, and even YouTube-videos at the bottom of the page. There is no media library yet, but handling images is pretty easy, as you can see:
 
 ![Handling Images in Typemill](media/live/5c0a48b44a765-live.gif "Images in Typemill")
 
