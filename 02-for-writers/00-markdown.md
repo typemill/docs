@@ -1,30 +1,30 @@
 # Markdown
 
-TYPEMILL uses Markdown for writing. Never heard of Markdown? Markdown is a simple syntax for text formatting and it is very similar to the markup used by wikipedia. Markdown uses a handful of special characters like `#` of `*` to format the text. 
+TYPEMILL uses Markdown for writing. Never heard of Markdown? Markdown is a simple syntax for text formatting, and it is very similar to the markup used by Wikipedia. Markdown uses a handful of special characters like `#` and `*` to format the text. 
 
-The big advantage for writers: They don't have to click a button to format a headline or to create a list. Instead they can format the text during the writing process without an interruption. And this speeds up your writing process tremendously. This is a short example for a markdown text: 
+The big advantage for writers: They don't have to click a button to format a headline or to create a list. Instead they can format the text during the writing process without any interruptions. This speeds up your writing process tremendously. This is a short example of some markdown text: 
 
 ````
 # My first level headline
  
-This is a paragraph and now we create an unordered list:
+This is a paragraph, and now we create an unordered list:
  
 - Item
 - Another item
 - A last item
 ````
 
-Markdown is used by a lot of technology platforms like GitHub or StackOverflow. And with popular tools like Trello or Slack it is also entering the non technical mainstream.
+Markdown is used by a lot of technology platforms like GitHub and StackOverflow, and with popular tools like Trello and Slack. It is also entering the non technical mainstream.
 
 ## Markdown Quick Reference
 
-This is a quick reference table. For a detailed reference with examples, please check the [markdown reference page](/info/markdown-test).
+This is a quick reference table. For a detailed reference with examples, please check the [Markdown reference page](/info/markdown-test).
 
 | Markdown                                                     | Result                                  |
 | ------------------------------------------------------------ | --------------------------------------- |
 | `[TOC]`                                                      | Table of content                        |
-| `#`                                                          | Headline first level                    |
-| `######`                                                     | Headline sixth level                    |
+| `#`                                                          | Headline - first level                    |
+| `######`                                                     | Headline - sixth level                    |
 | simple text                                                  | Paragraph                               |
 | `_italic_`                                                   | Italic text                             |
 | `*italic*`                                                   | Italic text                             |
