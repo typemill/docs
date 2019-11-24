@@ -2,6 +2,31 @@
 
 This is the version history with some release notes.
 
+## Version 1.2.19: Discard Changes
+
+_Release date: 24.11.2019_
+
+This is the final 1.2.X release and it has some implication on your website. First of all you have to update the 
+
+* The system folder
+* The theme typemill
+* The math plugin
+
+In version 1.2.19 the settings for the startpage (display as special cover page) has been moved from system settings to the theme settings. To restore the startpage design, go to settings, themes and open the typemill theme-settings. There you can activate the option "special design for startpage" again.
+
+This release also includes:
+
+* Visual Editor: Activate and deactivate each format button in the system settings.
+* Visual Editor: The editor is now modular and can be extended by components and plugins.
+* Plugins: The math plugin is the first plugin that extends the visual editor now.
+* System: Moved cover page settings from system to theme settings
+* Themes: Adjusted typemill to the new theme settings.
+* System: Switched from font-icons (fontello) to svg-icons (icomoon).
+* Themes: Ported the learn-theme from GRAV to Typemill (not published yet).
+* Fix: Themes can be changed now again.
+* Fix: Default theme settings are loaded now if system has not been setup yet.
+* Fix: Long inline code has line breaks now and does not destroy mobile view.
+* Fix: Redirect to the correct editor mode after login
 
 ## Version 1.2.18: Discard Changes
 
