@@ -2,7 +2,7 @@
 
 This is the version history with some release notes.
 
-## Version 1.2.19: Discard Changes
+## Version 1.2.19: Modular Editor
 
 _Release date: 24.11.2019_
 
