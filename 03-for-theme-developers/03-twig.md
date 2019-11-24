@@ -1,12 +1,12 @@
 # Templates with Twig
 
-Twig is a flexible, fast and secure template engine for PHP. Twig is used by many modern software projects and content management systems like CraftCMS, Statamic and even Drupal. If you have never used a template language before, then there are some good reasons to start with it today:
+Twig is a flexible, fast, and secure templating engine for PHP. Twig is used by many modern software projects and content management systems like CraftCMS, Statamic, and even Drupal. If you have never used a template language before, then there are some good reasons to start with it today:
 
-- The Twig syntax is **much shorter**, so your templates look cleaner and are easier to maintain.
-- Twig produces **less errors**. An unknown variable produces an error in PHP, but it does not in Twig. Twig handles most of these cases, so you skip a lot of ugly logic in your theme.
-- Twig is very **widespread**, so you can work with Twig in many other cms.
+- The Twig syntax is **much shorter** than PHP, so your templates look cleaner and are easier to maintain.
+- Twig produces **fewer errors**. An unknown variable produces an error in PHP, but it does not in Twig. Twig handles most of these cases, so you skip a lot of ugly logic in your theme.
+- Twig is very **widespread**, so you can work with Twig in many other CMS.
 
-The full Twig documentation for template designers is just one page long, so just head [over to Twig](http://twig.sensiolabs.org/doc/2.x/templates.html) and read it. You can learn the most important essentials for TYPEMILL in the following list.
+The full Twig documentation for template designers is just one page long, so just head [over to Twig's website](http://twig.sensiolabs.org/doc/2.x/templates.html) and read it. You can learn the most important essentials of Twig for TYPEMILL in the following list.
 
 [TOC]
 
@@ -20,7 +20,7 @@ Twig uses two curly brackets **to print out** a variable or expression:
 <p>{{ variable }}</p>
 ````
 
-Twig uses one curly bracket with a procent sign **to execute** statements such as loops:
+Twig uses one curly bracket with a percent sign **to execute** statements such as loops:
 
 ````
 <ul>
@@ -37,11 +37,11 @@ As you can see, the Twig syntax is cleaner and easier than pure PHP:
 - You don't need the `;` to finish a statement.
 - You don't need the `->` or `['foo']` notation for objects and arrays, just use a dot-notation like `element.name` for everything.
 - You don't need a lot of `()` like `foreach(a as b)`.
-- You don't need a syntax like `<?php echo htmlspecialchars($element->output, ENT_QUOTES, 'UTF-8') ?>` for escaping, just use a filter with a pipe notation like this `{{ element.output|e }}`.
+- You don't need a syntax like `<?php echo htmlspecialchars($element->output, ENT_QUOTES, 'UTF-8') ?>` for escaping special characters; just use a filter with a pipe notation like this `{{ element.output|e }}`.
 
 ## References
 
-These are some useful examples and snippets, that you can use for your templates. 
+These are some useful examples and snippets that you can use for your templates. 
 
 ### Simple Variable
 
@@ -178,13 +178,13 @@ Your index.twig looks like this:
 {% endblock %}
 ````
 
-Now, your template `index.twig` extends your template `layout.twig` and the `block content` in your layout template gets replaced by the `block content` defined in your index template. At the same time the layout template includes the navigation and the footer.
+Now, the `index.twig` template extends the `layout.twig` template, and the `block content` in your layout template gets replaced by the `block content` defined in your index template. At the same time, the layout template includes the navigation and the footer.
 
 ### Macros
 
 Macros in Twig are like functions in PHP: You can use them for repeating tasks. A typical example is a navigation, where you loop over a comlex and multi-dimensional array recursively. But you can also use macros to render forms and input fields.
 
-Macros are usually the most complex parts of your theme and they are mostly used for generating a navigation. You can use the macro for the navigation used in the typemill theme as a starting point. In most cases, you won't even touch it, but if you read the code in detail, it will probably pretty easy for you to costumize it for your needs.
+Macros are usually the most complex parts of your theme, and they are mostly used for generating navigation. You can use the macro for the navigation used in the Typemill theme as a starting point. In most cases, you won't even touch it, but if you read the code in detail, it will probably pretty easy for you to costumize it for your needs.
 
 A typical macro code for a navigation looks like this: 
 
@@ -211,5 +211,5 @@ A typical macro code for a navigation looks like this:
     <ul class="main-menu">
       {{ macros.loop_over(navigation) }}
     </ul>
-These are only some small examples, how you can use Twig to create templates and themes for TYPEMILL. In fact, you can do a lot more complex stuff with Twig. Just read the [official documentation](https://twig.sensiolabs.org/doc).
+These are only some small examples of how you can use Twig to create templates and themes for TYPEMILL. In fact, you can do a lot more complex stuff with Twig. Just read the [official documentation](https://twig.sensiolabs.org/doc).
 
