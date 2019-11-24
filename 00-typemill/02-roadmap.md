@@ -42,4 +42,4 @@ In the long run, TYPEMILL should become a lightweight (but fully featured) publi
 * Many more themes.
 * Plugins for comments, RSS, E-Mails, newsletters, and much more.
 
-If you miss a feature, or if you found a bug, please report it on [GitHub](https://github.com/trendschau/typemill).
+You can find a detailed roadmap on [GitHub](https://github.com/typemill/typemill/issues/35). If you miss a feature, or if you found a bug, please report it as an issue on [GitHub](https://github.com/trendschau/typemill).
