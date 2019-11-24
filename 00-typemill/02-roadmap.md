@@ -25,14 +25,14 @@ Here are some **milestones** from the past:
 * Editor: Add a table of contents that changes on the fly (v. 1.2.14)
 * Editor & Plugin: Add math with the pandoc syntax (v. 1.2.15)
 * Editor & Plugin: Search plugin and footnotes in visual mode (v. 1.2.16)
+* Editor: Edit inline formats like links, bold and italic (v. 1.2.17 - 1.2.18)
+* Editor: Modularize the visual editor (1.2.18)
 
 And here is the **roadmap** for the future:
 
-* Editor: Edit inline formats like links, bold and italic (v. 1.2.17 - 1.2.19)
-* Add meta-data to a page (v. 1.3.0)
-* Add more plugins (v. 1.3.1)
-* Add more themes (v. 1.3.2)
-* Add output formats like mobi, epub and more (v. 1.3.3)
+* Add meta-data to a page (v. 1.3.X)
+* Roles and rights (v. 1.4.X)
+* Content distribution (v. 1.5.X)
 
 In the long run, TYPEMILL should become a lightweight (but fully featured) publishing system with many more features: 
 
@@ -40,6 +40,6 @@ In the long run, TYPEMILL should become a lightweight (but fully featured) publi
 * Member area with pro-content.
 * Microservices for pro-features like job-adds, service providers, or text-adds. 
 * Many more themes.
-* Plugins for search, comments, RSS, E-Mails, newsletters, and much more.
+* Plugins for comments, RSS, E-Mails, newsletters, and much more.
 
 If you miss a feature, or if you found a bug, please report it on [GitHub](https://github.com/trendschau/typemill).
