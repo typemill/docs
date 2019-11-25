@@ -1,8 +1,8 @@
 # Usage and Licence
 
-TYPEMILL is published under the MIT licence. This means, that you can do with it whatever you want. 
+TYPEMILL is published under the MIT licence. This means that you can do whatever you want with it. 
 
-You are always welcome to reference or link to TYPEMILL, to report bugs and to contribute to this project (e.g. share fixes, enhancements or ideas). If this software safed you a lot of time and money, then you are invited to donate some bucks, so I can save some money, too :-)
+You are always welcome to reference or link to TYPEMILL, to report bugs, and to contribute to this project (e.g. share fixes, enhancements, or ideas). If this software saved you a lot of time and money, then you are invited to donate some bucks, so I can save some money too. :-)
 
 ---
 
