@@ -6,3 +6,4 @@ The **author dashboard** provides easy configuration for themes and plugins, and
 
 **Developers** who want to extend TYPEMILL have access to a flexible and easy system for themes and plugins.
 
+Thank you for proofreading to [Ezequiel Bruni](http://ezequielbruni.com).
