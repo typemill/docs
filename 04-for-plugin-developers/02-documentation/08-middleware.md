@@ -1,6 +1,6 @@
 # Add New Middleware
 
-If you are not familiar with the concept of middleware, please read the [documentation of slim](https://www.slimframework.com/docs/v3/concepts/middleware.html) first. With middleware you can add some logic that is added to the live cycle of the application. Some examples for middleware are:
+If you are not familiar with the concept of middleware, please read the [Slim framework documentation](https://www.slimframework.com/docs/v3/concepts/middleware.html) first. With middleware, you can add some logic that is added to the live cycle of the application. Some examples of uses for middleware are:
 
 * Authenticate a user.
 * Add a CSFR protection for input fields (already exists in TYPEMILL).
@@ -20,12 +20,12 @@ public static function addNewMiddleware()
 
 ````
 
-The method returns and array again and accepts to values:
+The method returns an array again and accepts two values:
 
 * **classname**: The fully qualified name of the class, that should be called.
 * **params**: False or an array.
 
-You can create a new file `MyMiddleware.php` in your plugin and add a middleware logic like this:
+You can create a new file called `MyMiddleware.php` in your plugin and add a middleware logic like this:
 
 ````
 <?php
@@ -42,9 +42,9 @@ class MyMiddleware
 }
 ````
 
-The support of middleware in TYPEMILL is pretty basic right now and it has some limitations. The most important limitation:
+The support for middleware in TYPEMILL is pretty basic right now, and it has some limitations. The most important limitation:
 
 * Right now you can only add global middleware. You cannot add middleware only to specific routes.
-* The order, when the middleware is executed, is fixed and you cannot manipulate it. This means, that all the plugin middleware is executed after the TYPEMILL middleware. And the order depends on when your plugin get's loaded.
+* The order in which the middleware is executed is fixed, and you cannot manipulate it. This means that all the plugin middleware is executed after the TYPEMILL middleware. And the order depends on when your plugin gets loaded.
 
-The middleware-support in TYPEMILL will be improved in future. For now, only use it if you really know what you wanna do. You can also add a new issue in github, if you miss anything.
+The middleware support in TYPEMILL will be improved in the future. For now, only use it if you really know what you wanna do. You can also add a new issue in GitHub, if you need a specific feature.
