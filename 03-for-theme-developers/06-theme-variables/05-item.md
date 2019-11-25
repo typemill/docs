@@ -1,8 +1,8 @@
 # Item
 
-The item variable is an object. It provides informations about the actual page like the page title,  the url, the slug or the next and the previous page. 
+The item variable is an object. It provides information about the current page, like the page title, the URL, the slug, or the next and the previous page. 
 
-Some informations are only available for the type `folder` while some other informations are specific to the type `file`. But most informations are shared by both.
+Some properties are only available for the `folder` type, while some other properties are specific to the `file` type. But most information is shared by both.
 
 [TOC]
 
@@ -108,7 +108,7 @@ stdClass Object
 
 ## Shared properties
 
-The following informations (properties) are shared by folders and files. The examples are based on a simple file and folder structure like this: 
+The following properties are shared by folders and files. The examples are based on a simple file and folder structure like this: 
 
 - content
   - 01-my-folder
@@ -128,13 +128,13 @@ Example: `{% if item.elementType == 'folder' %}`
 
 ### {{ item.urlRel }}
 
-The relative url of the item without the base url. This is useful if you want to set a link to another internal page.
+The relative URL of the item without the base URL. This is useful if you want to set a link to another internal page.
 
 Example:  `/my-folder/my-content-file`
 
 ### {{ item.urlAbs }}
 
-The absolute url of the item. This is useful for cannonical links, social media links or permalinks.
+The absolute URL of the item. This is useful for canonical links, social media links, or permalinks.
 
 Example: `http://mydomain.com/my-folder/my-content-file`
 
@@ -146,9 +146,9 @@ Example:  `/my-content-file` in the url `www.mywebsite.com/my-folder/my-content-
 
 ### {{ item.name }}
 
-The human readable name of the file or folder.
+The human-readable name of the file or folder.
 
-Example:  `my content file` for a Mardown file with a name like `01.my-content-file.md`.
+Example:  `my content file` for a Markdown file with a name like `01.my-content-file.md`.
 
 ### {{ item.originalName }}
 
@@ -158,7 +158,7 @@ Example: `04.my-content-file.md` or `1.my-folder`.
 
 ### {{ item.path }}
 
-The physical path to the item on your server. You probably don't need that, but TYPEMILL uses this information to map the urls with the content files and folders.
+The physical path to the item on your server. You probably don't need that, but TYPEMILL uses this information to map the URLs with the content files and folders.
 
 Example: `\1.my-folder\04.my-content-file.md`.
 
@@ -170,7 +170,7 @@ Example:  `1` for the folder and `04` for the file.
 
 ### {{ item.active }}
 
-The item.active indicates, if the item is active or not. You probably don't need it in a page content, because the current page is always an active page, too. But you will need this in another context, for example, if you create a navigation.
+The item.active indicates, if the item is active or not. You probably don't need it in a page content, because the current page is always an active page, too. But you will need this in another context, for example, if you create navigation.
 
 ### {{ item.key }}
 
@@ -204,7 +204,7 @@ Example: `2.4.3`
 
 The parent chapter of the current item. If the current item is 1.3.2, then the parent chapter is 1.3. 
 
-The variable `item.thisChapter` is an item object again, so you have access to all the above informations. This way, you can display the parent chapter's name or create a link to the parent chapter on the page.
+The variable `item.thisChapter` is an item object again, so you have access to all the above information. This way, you can display the parent chapter's name, or create a link to the parent chapter on the page.
 
 Example: `<a href="{{ item.thisChapter.urlRel }}">{{ item.thisChapter.name}}</a>`
 
@@ -212,7 +212,7 @@ Example: `<a href="{{ item.thisChapter.urlRel }}">{{ item.thisChapter.name}}</a>
 
 The next item. If the current item is 1.3.2, then the next item might be 1.3.3 or 1.4. 
 
-The `item.nextItem` is an item object again, so you have access to all the informations explained above. You can use the nextItem to create a pagination.
+The `item.nextItem` is an item object again, so you have access to all the information explained above. You can use nextItem to create pagination.
 
 Example: `<a href="{{ item.nextItem.urlRel }}">{{ item.nextItem.name }}</a>`
 
@@ -220,7 +220,7 @@ Example: `<a href="{{ item.nextItem.urlRel }}">{{ item.nextItem.name }}</a>`
 
 The previous item. If the current item is 1.3.2, then the previous item is 1.3.1. If the current item is 1.3, then the previous item might be 1.2.8.
 
-The `item.prevItem` is an item object again, so you have access to all the informations explained above. You can use the prevItem to create a pagination.
+The `item.prevItem` is an item object again, so you have access to all the information explained above. You can use prevItem to create pagination.
 
 Example: `<a href="{{ item.prevItem.urlRel }}">{{ item.prevItem.name }}</a>`
 
@@ -232,7 +232,7 @@ Example: `Last modified: {{ item.modified|date(m/d/Y) }}`
 
 ## Specific to Folders or Files
 
-The following informations are specific to files or folders
+The following information is specific to files or folders.
 
 ### {{ item.fileType }}
 
@@ -242,7 +242,7 @@ Example: `{% if item.elementType == 'file' %} {{ item.fileType}} {% endif %}`
 
 ### {{ item.index }}
 
-This information is only available for **folders**. It indicates, if there exits an `index.md` file in the folder or not. If there is no index file with content for the folder, then you can display an alternative content.
+This information is only available for **folders**. It indicates, if there is an `index.md` file in the folder or not. If there is no index file with content for the folder, then you can display alternative content.
 
 The whole usecase might look like this:
 
@@ -278,7 +278,7 @@ The simple solution with all first level items of the current folder looks like 
 {% endif %}
 ````
 
-To display all items within the current folder you have to create a macro in a separate file like this first:
+To display all items within the current folder, you have to create a macro in a separate file like this first:
 
 ````
 {% macro loop_over(folder) %}
@@ -296,7 +296,7 @@ To display all items within the current folder you have to create a macro in a s
 {% endmacro %}
 ````
 
-Then you have to import the macro into your template and call it like this:
+Then you have to import the macro into your template, and call it like this:
 
 ```
 {% import 'folderMacro.twig' as macros %}

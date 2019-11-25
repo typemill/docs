@@ -1,3 +1,3 @@
 # Info
 
-Some informations like version history, copyright, licence and imprint.
+Some information like version history, copyright, licence, and imprint.

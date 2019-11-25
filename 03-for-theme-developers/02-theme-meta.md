@@ -1,9 +1,9 @@
 # Theme Meta with YAML
 
-It is highly recommendet to add some meta-information to your theme. This is quickly done with a small YAML-file. The YAML-file must have the same name as your theme folder. The YAML-file has up to three parts and is used for this:
+It is highly recommended to add some meta-information to your theme. This is quickly done with a small YAML-file, which must have the same name as your theme folder. The YAML-file has up to three parts and is used for the following:
 
-* Display basic informations in the author-panel and generate update notifications.
-* Use settings (variables) for your theme if you want.
+* Display basic information in the author-panel, and generate update notifications.
+* Use settings (variables) for your theme, if you made any.
 * Let users edit the settings and customize the theme in the author-panel.
 
 ## Add Basic Informations 
@@ -19,11 +19,11 @@ homepage: http://an-info-website-for-the-theme.com
 licence: MIT
 ```
 
-As you can see the YAML-syntax is simple and readable even for non-technicians. Inside TYPEMILL the YAML-files are converted to one-dimensional or multi-dimensional arrays, so you can think about YAML as a simplified array language, if that helps. 
+As you can see, the YAML-syntax is simple and readable even for non-technical people. Inside TYPEMILL, the YAML-files are converted to one-dimensional or multi-dimensional arrays, so you can think about YAML as a simplified array language, if that helps. 
 
 ## Use Settings
 
-Sometimes you want to use variables in your theme, for example to change the text of a button. With YAML you can easily do this: Just create a new block that starts with `settings` and write all your settings as simple key-value-pairs. Indent them with two spaces like this: 
+Sometimes you want to use variables in your theme, for example to change the text of a button. With YAML you can easily do this: Just create a new block that starts with `settings`, and write all your settings as simple key-value-pairs. Indent them with two spaces like this: 
 
 ```
 settings:
@@ -31,7 +31,7 @@ settings:
   start: Start
 ```
 
-The settings are automatically merged with all other TYPEMILL settings and are available in your themes with a simple Twig tag like this:
+The settings are automatically merged with all other TYPEMILL settings, and are available in your themes with a simple Twig tag like this:
 
 ```
 {{ settings.themes.typemill.chapter }} // prints out "Chapter".
@@ -70,11 +70,11 @@ settings:
      height: 50
 ```
 
-Keep in mind that more renditions will make the image processing slow, so do not add more than really needed. The rendition name "thumbs" will be added to the image name. Right now the usage is pretty limited, because there is no logic to provide all images for a page yet.
+Keep in mind that more renditions (image sizes) will make the image processing slow, so do not add more than really needed. The rendition name "thumbs" will be added to the image name. Right now the usage is pretty limited, because there is no logic to provide all images for a page yet.
 
 ## Make Settings Editable
 
-Finally you can make your theme variables editable for the user in the author panel. To do this, just add another block that starts with `forms` and `fields`. After that, you can define a wide range of input fields with YAML. It starts with the name of the field followed by the field definition. 
+Finally, you can make your theme variables editable for the user in the author panel. To do this, just add another block that starts with `forms` and `fields`. After that, you can define a wide range of input fields with YAML. It starts with the name of the field, followed by the field definition. 
 
 ```
 forms:
@@ -126,4 +126,4 @@ forms:
 
 The fields `modified` and `modifiedText` will then be grouped in a fieldset with the legend `Last Modified`.
 
-If you read the YAML-definition for input fields carefully, then you will notice that the definitions are pretty similar to HTML: You simply define types and attributes like input-type, labels and placeholders. Nearly all valid field-types and field attributes are supported. You can find a detailed list in the [documentation for plugins](/plugin-developers/documentation/field-overview).
+If you read the YAML definition for input fields carefully, then you will notice that the definitions are pretty similar to HTML: You simply define types and attributes like input-type, labels, and placeholders. Nearly all valid field-types and field attributes are supported. You can find a detailed list in the [documentation for plugins](/plugin-developers/documentation/field-overview).

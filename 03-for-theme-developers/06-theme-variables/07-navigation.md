@@ -1,14 +1,14 @@
 # Navigation
 
-The variable `{{ navigation }}` represents the structure of the whole content folder and can be used to create a navigation. 
+The `{{ navigation }}` variable represents the structure of the whole content folder, and can be used to create navigation on your page. 
 
-The `{{ navigation }}` variable is a multi dimensional array of item objects. With that array you have access to nearly all informations, that an item object provides. Only the following informations for the paging is not part of the item objects within the navigation variable:
+The `{{ navigation }}` variable is a multi dimensional array of item objects. With that array you have access to nearly all information that an item object provides. Only the following information for the paging is not part of the item objects within the navigation variable:
 
 - thisChapter
 - nextItem
 - prevItem
 
-The chapter about the `{{ item }}` variable lists all informations, that are provided by the item object. Read it, if you haven't done it yet.
+The chapter about the `{{ item }}` variable lists all properties that are provided by the item object. Read it, if you haven't done it yet.
 
 ## Example of the {{ navigation }} variable 
 
@@ -57,9 +57,9 @@ This is an example of the `{{ navigation }}`  variable containing just one folde
         )
     )
 
-## Create a Navigation for Your Theme
+## Create Navigation for Your Theme
 
-To print out the navigation or a table of contents, you have to loop over  `{{ navigation }}` recursively. In Twig, you can do this with a macro. 
+To print out the navigation, or a table of contents, you have to loop over  `{{ navigation }}` recursively. In Twig, you can do this with a macro. 
 
 In the following example, the macro is integrated in a separate template called "navigation.twig". You can also create a separate file with the macro (e.g. "navMacro.twig") and import it into your navigation template.
 
@@ -93,7 +93,8 @@ The whole usecase with the macro and the navigation in one template looks like t
             {{ macros.loop_over(navigation) }}
         </ul>
     </nav>
-Just as a recommendation for your theme-structure: Typically you create a separate file like `navigation.twig`  with all the code above. Then you place this template in a folder like `partials`. You can include this navigation-file in a `layout.twig` file, so that the navigation is included in all pages of your theme. So the structure might look like this:
+
+Just as a recommendation for your theme structure: Typically you create a separate file like `navigation.twig` with all the code above. Then you place this template in a folder like `partials`. You can include this navigation-file in the `layout.twig` file, so that the navigation is included in all pages of your theme. So the structure might look like this:
 
 - theme
   - partials

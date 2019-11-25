@@ -61,14 +61,14 @@ So we got the settings of TYPEMILL and we stored the settings in a variable. Now
 
 ## Add Assets
 
-TYPEMILL provides some handy methods in the plugin class (check the [list in the documentation](/for-plugin-developers/documentation/method-overview)). Among them are methods to handel assets and to add inline CSS or JavaScript. The methods are:
+TYPEMILL provides some handy methods in the plugin class (check the [list of methods in the documentation](/for-plugin-developers/documentation/method-overview)). Among them are methods to handle assets, and to add inline CSS or JavaScript. The methods are:
 
 * `addCSS('url-to-ressource.css')`
 * `addInlineCSS('body{ background: #000; }')`
 * `addJS('url-to-ressource.js')`
 * `addInlineJS('alert("hello")')`
 
-You have access to all these handy methods with the `$this` keyword. If you are not familiar with `$this`, then simply google it. In short: `$this` references to the current object.
+You have access to all of these handy methods with the `$this` keyword. If you are not familiar with `$this`, then simply Google it. In short: `$this` references to the current object.
 
 You can add assets like CSS or JavaScript in every event. But in this case, we want to use the `onTwigLoaded`-event:
 
@@ -84,7 +84,7 @@ If you want to add an internal asset like above, then use the relative path star
 
 ## Add Initial JavaScript
 
-In the last step, we want to add the JavaScript that initializes the cookie consent. We can do this very easily with the `addInlineJS`-method like this:
+In the last step, we want to add the JavaScript that initializes the cookie consent. We can do this very easily with the `addInlineJS` method like this:
 
 ````
 public function onTwigLoaded()
