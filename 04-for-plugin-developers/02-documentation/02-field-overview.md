@@ -1,12 +1,12 @@
 # Field Overview
 
-Fields and forms for user-input are defined in YAML. YAML is a simple configuration-syntax that transforms into an object or an array. The forms can be used as [public forms](/for-plugin-developers/documentation/public-forms) in the frontend (e.g. for a contactform), for plugin-settings and for theme-settings. TYPEMILL will read all your field definitions and create a user interface on the fly.
+Fields and forms for user input are defined in YAML. YAML is a simple configuration-syntax that transforms into an object or an array. The forms can be used as [public forms](/for-plugin-developers/documentation/public-forms) in the frontend (e.g. for a contact form), for plugin settings, and for theme settings. TYPEMILL will read all your field definitions, and create a user interface on the fly.
 
 [TOC]
 
 ## Basics
 
-The fields are defined in the [YAML-configuration](/for-plugin-developers/documentation/configuration-file) of a plugin or theme. Fields for plugins or themes start with the keywords `forms` and `fields` followed by a list of fields like this:
+The fields are defined in the [YAML configuration file](/for-plugin-developers/documentation/configuration-file) of a plugin or theme. Fields for plugins or themes start with the keywords `forms` and `fields`, followed by a list of fields like this:
 
 ````
 forms:
@@ -21,7 +21,7 @@ forms:
       label: Another Field
 ````
 
-Public forms are defined in the same way but start with the keywords `public` and `fields`:
+Public forms are defined in the same way but, start with the keywords `public` and `fields`:
 
 ````
 public:
@@ -36,19 +36,19 @@ public:
       label: Another Field
 ````
 
-The field input of a user is **validated** in the backend automatically. The backend validation is pretty tight, so that you should always test the input fields intensively. If you run into unwanted validation errors, please report it in github.
+The field input of a user is **validated** in the backend automatically. The backend validation is pretty tight, so that you should always test the input fields intensively. If you run into unwanted validation errors, please report them on GitHub.
 
-Typically a field define consists of:
+Typically a field definition consists of:
 
 * The **field-type** (text, select, checkbox and more).
 * A **label**.
 * A **description** (displayed below the field).
-* A **help-text** (displayed as question-mark with a infobox on hover).
-* **Attributes** like required, placeholder and more.
+* A **help-text** (displayed as question mark that displays an info box on hover).
+* **Attributes** like "required", "placeholder", and more.
 
 ## Field Types and Attributes
 
-Right now TYPEMILL provides the following field types:
+Right now, TYPEMILL provides the following field types:
 
 ````
 type: checkbox
@@ -81,7 +81,7 @@ readonly: true
 required: true
 ````
 
-**Very important**: If you use **required: true**, than you have to add a default value for the field in the [settings-definitions](/for-plugin-developers/documentation/configuration-file) of your YAML-file. Otherwise the user cannot store the plugin-settings due to frontend-validation.
+**Very important**: If you use **required: true**, then you have to add a default value for the field in the [settings definitions](/for-plugin-developers/documentation/configuration-file) of your YAML-file. Otherwise, the user cannot store the plugin settings due to frontend validation.
 
 TYPEMILL supports the following attributes with values:
 
@@ -97,15 +97,15 @@ rows: 5
 cols: 5 
 ````
 
-The `pattern` attribute accepts every valid regex for an input validation in the frontend. Please note, that there is also a backend validation that might conflict with your frontend validation. So please double check your validation pattern and test the input intensively. You can of course use attributes like `required`, `placeholder`, `rows` or `cols` only if these attributes are valid in HTML for the field-type.
+The `pattern` attribute accepts every valid regex for input validation in the frontend. Please note, that there is also a backend validation that might conflict with your frontend validation. So please double check your validation pattern, and test the input intensively. You should, of course, only use attributes like `required`, `placeholder`, `rows`, or `cols` if these attributes are valid in HTML for the field type.
 
 ## Examples
 
-Check the following examples. This are only for demonstration, you can combine the attributes in all ways that are valid for html-forms.
+Check out the following examples. These are only for demonstration, and you can combine the attributes in all ways that are valid for HTML forms.
 
 ### checkbox
 
-Creates a simple checkbox. Note that the HTML-label that is on the right side of the checkbox is created with `checkboxlabel`. The `label` is added above the checkbox so that it is looks like the label of the other field-types.
+Creates a simple checkbox. Note that the HTML label that is on the right side of the checkbox is created with `checkboxlabel`. The `label` is added above the checkbox so that it is looks like the label of the other field-types.
 
 ````
 forms:
@@ -137,7 +137,7 @@ forms:
 
 ### color
 
-Adds a color-picker. If you use this for a frontend-form, then the standard html5-color-picker will be used. You have to style it yourself if you don`t like the standard. For theme-settings and plugin-settings an individual color-picker is used.
+Adds a color picker. If you use this for a frontend form, then the standard HTML5 color picker will be used. You have to style it yourself, if you don`t like the standard. For theme settings and plugin settings, an individual color picker is used.
 
 ````
 forms:
@@ -154,7 +154,7 @@ forms:
 
 ### date
 
-The standard HTML5-datepicker will be used.
+The standard HTML5 datepicker will be used.
 
 ````
 forms:
@@ -230,7 +230,7 @@ forms:
 
 ### password
 
-There is probably no usecase for this right now.
+There is probably no use case for this right now.
 
 ````
 forms:
@@ -243,7 +243,7 @@ forms:
 
 ### radio
 
-Radio-buttons are created with options like this:
+Radio buttons are created with options like this:
 
 ````
 forms:
@@ -260,7 +260,7 @@ forms:
 
 ### select
 
-Select-fields are also created with options like this:
+Select fields are created with options like this:
 
 ````
 forms:
@@ -295,7 +295,7 @@ forms:
 
 ### textarea
 
-A textarea does not accept any html-tags or code, but it always accepts markdown. If you render textarea input as markdown, you should notify the user about this (use the label or the description for this).
+A textarea does not accept any HTML tags or code, but it always accepts Markdown. If you render textarea input as Markdown, you should notify the user about this (use the label or the description for this).
 
 ````
 forms:
@@ -311,7 +311,7 @@ forms:
 
 ### tel
 
-Gernerates a html5 input field for telephone numbers.
+Gernerates a HTML5 input field for telephone numbers.
 
 ````
 forms:
@@ -324,7 +324,7 @@ forms:
 
 ### url
 
-This field only accepts full url with a protocol like http, https, ftp or similar.
+This field only accepts a full URL with a protocol like http, https, ftp, or similar.
 
 ````
 forms:
@@ -338,7 +338,7 @@ forms:
 
 ### paragraph
 
-A paragraph is a pure text without any user-inputs. A paragraph field accepts markdown, but does not provide any other options than a value.
+A paragraph is a pure text. A paragraph field accepts Markdown, but does not provide any other options than a value.
 
 ````
 forms:
@@ -349,11 +349,11 @@ forms:
       value: This is my text that should be displayed in the form.
 ````
 
-Paragraphs can be useful for [public form](/for-developers/documentation/public-forms) , e.g. if you want to add a legal notice or a longer explanation. It is also possible to use the user-input of another plugin-field for the paragraph, so the user can edit for the example the legal notice of a contact form.
+Paragraphs can be useful for [public forms](/for-developers/documentation/public-forms), e.g. if you want to add a legal notice or a longer explanation. It is also possible to use the user input of another plugin-field for the paragraph, so the user can edit, for another example, the legal notice of a contact form.
 
 ## Example for a complete yaml configuration
 
-To sum it up, this is a complete example of a yaml configuration file for a plugin with the meta-description, a default value and a field definition for user input:
+To sum it up, this is a complete example of a YAML configuration file for a plugin with the meta description, a default value, and a field definition for user input:
 
 ````
 name: Example Plugin
