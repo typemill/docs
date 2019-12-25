@@ -1,8 +1,9 @@
 # Plugins
 
-TYPEMILL ships with some standard plugins. You can activate and configure all plugins in the author panel under `settings` and `plugins`. Right now TYPEMILL provides these four plugins:
+TYPEMILL has its own [plugin directory](https://plugins.typemill.net). You can upload all plugins to the plugin folder and then activate and configure the plugin in the author panel under `settings` and `plugins`. 
 
-* **Cookie Consent**: Adds a cookie consent banner to your website. 
+Some examples for plugins are:
+
 * **Analytics**: Adds Matomo (Piwik) or Google Analytics to your website.
 * **Highlight**: Highlights code in code-blocks (useful for developers).
 * **Math**: Write math with Markdown and MathJax or KaTeX. Check the [markdown reference page](/info/markdown-test).
