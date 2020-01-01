@@ -2,6 +2,25 @@
 
 This is the version history with some release notes.
 
+## Version 1.3.0: Meta Information
+
+_Release date: 01.01.2020_
+
+Version 1.3.0 introduces meta-information for pages. As of version 1.3.0 Typemill will be delivered without plugins. You can download plugins and themes from the new plugin and theme-pages.
+
+The release includes:
+
+* Pages have meta information like title, description and author now.
+* Pages can be created in base folder now.
+* Changed standard content for new pages (title instead off "add title")
+* New theme download page https://themes.typemill.net
+* New plugin download page https://plugins.typemill.net
+* Updated Typemill Theme (cover page will display the title of the content page instead of the typemill title now)
+* New theme "learn" (ported from GRAV CMS)
+* New theme "personal".
+* Cookie-consent plugin is deleted (not dgpr-compatible).
+* New GitHub repository https://github.com/typemill-resources for plugins and themes
+
 ## Version 1.2.19: Modular Editor
 
 _Release date: 24.11.2019_
