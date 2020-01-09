@@ -1,4 +1,4 @@
-# YAML Configuration File
+# Plugin Configurations with YAML
 
 Each plugin should have a configuration file written in YAML. YAML is a widespread and easy-to-understand configuration language that can be transformed into an array easily. Like an array, YAML uses simple key-value pairs. Deeper levels for multidimensional arrays are indicated with indentation. Indentation is made by two spaces. Do not use tabs for indentation, because it will break the transformation.
 

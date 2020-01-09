@@ -26,11 +26,12 @@ Here are some **milestones** from the past:
 * Editor & Plugin: Add math with the pandoc syntax (v. 1.2.15)
 * Editor & Plugin: Search plugin and footnotes in visual mode (v. 1.2.16)
 * Editor: Edit inline formats like links, bold and italic (v. 1.2.17 - 1.2.18)
-* Editor: Modularize the visual editor (1.2.18)
+* Editor: Discard changes (1.2.18)
+* Editor: Modularize the visual editor (1.2.19)
+* Meta-tabs for pages (1.3.0)
 
 And here is the **roadmap** for the future:
 
-* Add meta-data to a page (v. 1.3.X)
 * Roles and rights (v. 1.4.X)
 * Content distribution (v. 1.5.X)
 

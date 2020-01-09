@@ -1,25 +1,8 @@
 # Helper Functions
 
-TYPEMILL provides some useful helper Twig helper functions for your theme: 
+With the helper functions of TYPEMILL you can create very flexible themes, you can use widgets like a search box and even list all articles of a folder.
 
-* A **base url** that returns the root url.
-* The **asset tags** allow plugins to inject CSS and JS ressources, or inline-code.
-* A **widget tag** allows plugins to inject HTML snippets like a search field.
-* A **markdown render function** to render additional markdown content in your theme.
-
-## Base URL
-
-Whenever you want to create some urls in your theme, you can build them with the base_url tag. The base url always returns the basic url to your application. Usually this is the domain name, but if you develop on localhost, it can also be something like `http://localhost/your-project-folder`.
-
-````
-{{ base_url }}
-````
-
-If you develop your theme, the base url is pretty useful if you want to include some assets like CSS or JavaScript. You can reference to these files like this: 
-
-````
-<link rel="stylesheet" href="{{ base_url }}/themes/typemill/css/style.css" />
-````
+[TOC]
 
 ## Asset Tags
 
@@ -66,21 +49,92 @@ The same for JavaScript: It is recommended to place all JavaScript at the end of
 </body>
 ````
 
-## Widgets
+## Activate Tachyons
 
-Themes should implement a widgetized zone like this somewhere:
+Typemill uses the CSS library [Tachyons](https://tachyons.io/). If you want to use the library for your theme, then you can activate it in the header like this:
 
 ````
-{% if widgets %}
-    {% for index,widget in widgets %}
-        <aside id="{{ index }}">
-	    {{ widget }}					
-	</aside>
-    {% endfor %}
-{% endif %}
+<html>
+ <head>
+  <title>title</title>
+  ....
+  ....
+  {% block stylesheets %}
+    <link rel="stylesheet" href="{{ base_url }}/themes/mytheme/css/style.css" />
+
+    {{ assets.activateTachyons() }}
+    
+    {{ assets.renderCSS() }}
+      
+  {% endblock %}
+ </head>
 ````
 
-Widgets are simply some HTML snippets that can be injected by plugins. A good example for a widget is a Search field, that is added with the existing Search plugin.
+## Activate Vue.js and Axios
+
+Typemill uses the frontend-library Vue.js and Axios.js for http-requests. You can activate both for your theme like this:
+
+````
+<body>
+  ...
+  {{ content }}
+  ...
+  ...
+  
+  {% block javascripts %}
+    
+   <script src="{{ base_url }}/themes/yourtheme/js/my.js"></script>
+   
+   {{ assets.activateAxios() }}
+   {{ assets.activateVue() }}
+
+   {{ assets.renderJS() }}
+    
+ {% endblock %}   
+</body>
+````
+
+Axios will be instanciated with the variable `myaxios` with the base-url that is needed for axios.
+
+## List Articles
+
+Typemill is not a blog engine, but it provides an easy way to loop through all articles of a folder and to display the articles as a list. To do so, just use the `{{ item }}` variable of the folder and loop through each sub-item like this:
+
+```
+    <ul>
+      
+      {% for article in item.folderContent %}
+
+        <li>
+          <a href="{{ article.urlAbs }}"><h2>{{ article.name }}</h2></a>
+        </li>
+          
+      {% endfor %}
+    </ul>
+
+```
+
+The example above is pretty limited because the item array does only provide the name of the article and no other informations like the author or the description. To get those informations we can use the helper function `{{ getPageMeta(settings,pageItem) }}` and fetch the meta-information for each article:
+
+```
+    <ul>
+      
+      {% for article in item.folderContent %}
+
+        {% set page = getPageMeta(settings, article) %}
+
+        <li>
+          <a href="{{ article.urlAbs }}">
+              <h2>{{ article.name }}</h2>
+              <small>{{ page.meta.modified }} | {{ page.meta.author }}</small>
+              <p>{{ page.meta.description }}</p>
+          </a>
+        </li>
+          
+      {% endfor %}
+    </ul>
+
+```
 
 ## Render Markdown
 
@@ -102,5 +156,21 @@ Then you can render out the Markdown content in your theme like this:
     {{ markdown(settings.myplugin.sidebar) }}
 </div>
 ````
+
+## Render Widgets
+
+Themes should implement a widgetized zone like this somewhere:
+
+````
+{% if widgets %}
+    {% for index,widget in widgets %}
+        <aside id="{{ index }}">
+      {{ widget }}          
+  </aside>
+    {% endfor %}
+{% endif %}
+````
+
+Widgets are simply some HTML snippets that can be injected by plugins. A good example for a widget is a Search field, that is added with the existing Search plugin.
 
 Keep reading the documentation to learn all the details. 

@@ -1,4 +1,4 @@
-# Theme Meta with YAML
+# Theme Configurations with YAML
 
 It is highly recommended to add some meta-information to your theme. This is quickly done with a small YAML-file, which must have the same name as your theme folder. The YAML-file has up to three parts and is used for the following:
 
@@ -20,6 +20,23 @@ licence: MIT
 ```
 
 As you can see, the YAML-syntax is simple and readable even for non-technical people. Inside TYPEMILL, the YAML-files are converted to one-dimensional or multi-dimensional arrays, so you can think about YAML as a simplified array language, if that helps. 
+
+## Add a Donation Button
+
+You can also add a donation button for paypal like this:
+
+```
+name: My Theme Name
+version: 1.0.0
+description: Write what you want
+author: Your name here
+homepage: http://an-info-website-for-the-theme.com
+licence: MIT
+paypal: https://paypal.me/yourname
+amount: 10
+```
+
+This will add a donation button to the [theme-collection](https://themes.typemill.net) of Typemill. If you want to add your theme to the theme collection, please open a new issue [on GitHub](https://github.com/typemill/typemill).
 
 ## Use Settings
 
@@ -56,7 +73,7 @@ settings:
       width: 820
 ```
 
-The  standard name for content images is "live". You can add only a with or a with and a height. You can even add more renditions like this if you want:
+The  standard name for content images is "live". You can add a width or a width and a height. You can even add more renditions like this if you want:
 
 ```
 settings:

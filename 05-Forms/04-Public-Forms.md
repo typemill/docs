@@ -2,9 +2,11 @@
 
 Public forms, like contact or newsletter subscription forms, are a common requirement for websites, but often a hassle for developers. Typemill makes your life much easier, because all you need is a plugin with some form definitions in YAML, and business logic in PHP. All the complicated stuff like generating the front end forms, validating, form-data, and adding spam security or CSRF-protection is done by Typemill automatically.
 
+[TOC]
+
 ## Form Definitions
 
-Public forms are defined in a separate block of the YAML of your plugin. Public forms can use the exact same [field definitions](/for-plugin-developers/documentation/field-overview) as admin forms. Look at this example:
+Public forms are defined in a separate block of the YAML-configuration-file of your plugin. Public forms can use the exact same [field definitions](/for-plugin-developers/documentation/field-overview) as theme- and plugin-forms. Look at this example:
 
 ````
 forms:

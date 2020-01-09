@@ -1,42 +1,10 @@
 # Field Overview
 
-Fields and forms for user input are defined in YAML. YAML is a simple configuration-syntax that transforms into an object or an array. The forms can be used as [public forms](/for-plugin-developers/documentation/public-forms) in the frontend (e.g. for a contact form), for plugin settings, and for theme settings. TYPEMILL will read all your field definitions, and create a user interface on the fly.
+You need a checkbox, a date and a textarea? No problem, Typemill provides it all...
 
 [TOC]
 
-## Basics
-
-The fields are defined in the [YAML configuration file](/for-plugin-developers/documentation/configuration-file) of a plugin or theme. Fields for plugins or themes start with the keywords `forms` and `fields`, followed by a list of fields like this:
-
-````
-forms:
-  fields:
-   
-    myfieldname:
-      type: text
-      label: My Field
-    
-    anotherfield:
-      type: text
-      label: Another Field
-````
-
-Public forms are defined in the same way but, start with the keywords `public` and `fields`:
-
-````
-public:
-  fields:
-   
-    myfieldname:
-      type: text
-      label: My Field
-    
-    anotherfield:
-      type: text
-      label: Another Field
-````
-
-The field input of a user is **validated** in the backend automatically. The backend validation is pretty tight, so that you should always test the input fields intensively. If you run into unwanted validation errors, please report them on GitHub.
+## Elements of a Field
 
 Typically a field definition consists of:
 
@@ -44,9 +12,9 @@ Typically a field definition consists of:
 * A **label**.
 * A **description** (displayed below the field).
 * A **help-text** (displayed as question mark that displays an info box on hover).
-* **Attributes** like "required", "placeholder", and more.
+* **Attributes** (like "required", "placeholder", and more).
 
-## Field Types and Attributes
+## Field Types
 
 Right now, TYPEMILL provides the following field types:
 
@@ -69,6 +37,8 @@ type: fieldset
 type: paragraph
 ````
 
+## Field Attributes
+
 TYPEMILL supports these boolean attributes (with value: true):
 
 ````
@@ -81,8 +51,6 @@ readonly: true
 required: true
 ````
 
-**Very important**: If you use **required: true**, then you have to add a default value for the field in the [settings definitions](/for-plugin-developers/documentation/configuration-file) of your YAML-file. Otherwise, the user cannot store the plugin settings due to frontend validation.
-
 TYPEMILL supports the following attributes with values:
 
 ````
@@ -90,6 +58,7 @@ id: 'myId'
 class: 'myClass'
 pattern: '[0-9]{4}'
 placeholder: 'my placeholder-text here'
+maxlength: 60
 min: 1
 max: 10
 size: 5
@@ -97,15 +66,15 @@ rows: 5
 cols: 5 
 ````
 
-The `pattern` attribute accepts every valid regex for input validation in the frontend. Please note, that there is also a backend validation that might conflict with your frontend validation. So please double check your validation pattern, and test the input intensively. You should, of course, only use attributes like `required`, `placeholder`, `rows`, or `cols` if these attributes are valid in HTML for the field type.
+The `pattern` attribute accepts every valid regex for input validation in the frontend. Please note, that there is also a backend validation that might conflict with your frontend validation pattern. So please double check your validation pattern, and test the input intensively. You should, of course, only use attributes like `required`, `placeholder`, `rows`, or `cols` if these attributes are valid in HTML for the field type.
 
 ## Examples
 
-Check out the following examples. These are only for demonstration, and you can combine the attributes in all ways that are valid for HTML forms.
+Just copy & paste the required field-types from the examples below to create your desired form. You can combine the attributes in all ways that are valid for HTML forms.
 
 ### checkbox
 
-Creates a simple checkbox. Note that the HTML label that is on the right side of the checkbox is created with `checkboxlabel`. The `label` is added above the checkbox so that it is looks like the label of the other field-types.
+Creates a simple checkbox. Note that the HTML label (which appears on the right side of the checkbox) is created with `checkboxlabel`. The `label` is added above the checkbox so that it is looks like the label of the other field-types.
 
 ````
 forms:
@@ -137,7 +106,9 @@ forms:
 
 ### color
 
-Adds a color picker. If you use this for a frontend form, then the standard HTML5 color picker will be used. You have to style it yourself, if you don`t like the standard. For theme settings and plugin settings, an individual color picker is used.
+Adds a color picker. 
+
+**Limitation:** The configuration fields for themes and plugins use a customized color-picker. Public forms and meta-tabs use the standard HTML5 color-picker.
 
 ````
 forms:
@@ -181,7 +152,9 @@ forms:
 
 ### fieldset
 
-If you have a lot of fields, then you can group them together with a fieldset. You can use any fields inside a fieldset of course.
+If you have a lot of fields, then you can group them together with a fieldset. You can use any fields inside a fieldset of course. 
+
+**Limitation**: This does not work for meta-tabs right now.
 
 ````
 forms:
@@ -202,8 +175,10 @@ forms:
 
 ### hidden
 
-If you really need a hidden field, don't forget to add a value.
+If you really need a hidden field, don't forget to add a value. 
 
+**Limitation:** The field does not work for meta-tabs right now.
+ 
 ````
 forms:
   fields:
@@ -230,7 +205,7 @@ forms:
 
 ### password
 
-There is probably no use case for this right now.
+If you want to hide information on user input.
 
 ````
 forms:
@@ -287,8 +262,8 @@ forms:
       type: text
       label: Please add a title
       placeholder: My Title
-      size: 50
-      pattern: [a-zA-Z0-9 ]
+      maxlength: 50
+      pattern: '[a-zA-Z0-9 ]'
       class: 'standard-title'
       id: 'mytitle'
 ````
@@ -340,6 +315,8 @@ forms:
 
 A paragraph is a pure text. A paragraph field accepts Markdown, but does not provide any other options than a value.
 
+**Limitation:** This does not work for meta-tabs right now.
+
 ````
 forms:
   fields:
@@ -350,29 +327,4 @@ forms:
 ````
 
 Paragraphs can be useful for [public forms](/for-developers/documentation/public-forms), e.g. if you want to add a legal notice or a longer explanation. It is also possible to use the user input of another plugin-field for the paragraph, so the user can edit, for another example, the legal notice of a contact form.
-
-## Example for a complete yaml configuration
-
-To sum it up, this is a complete example of a YAML configuration file for a plugin with the meta description, a default value, and a field definition for user input:
-
-````
-name: Example Plugin
-version: 1.0.0
-description: Add a short description
-author: Firstname Lastname
-homepage: http://your-website.net
-licence: MIT
-settings:
-  theme: 'edgeless'
-forms:
-  fields:
-    theme:
-      type: select
-      label: Select a Theme
-      required: true
-      options:
-        edgeless: Edgeless
-        block: Block
-        classic: Classic
-````
 
