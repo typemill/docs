@@ -2,14 +2,15 @@
 
 This is the version history with some release notes.
 
-## Version 1.3.1: Improved Meta Information
+## Version 1.3.1: Improved Meta and Internationalization
 
 _Release date: 09.01.2020_
 
-Version 1.3.1 improves the meta-information. Please update the system folder and the theme folder.
+Version 1.3.1 improves the meta-information. Please update the system folder and the theme folder. Version 1.3.1 was updated again in the evening of 09.01.2020 with internationalization.
 
 The release includes:
 
+* Internationalization: Select italian or english language for the author dashboard.
 * Meta: Meta-tabs are added to raw mode now.
 * Meta: Create new meta-tabs with a plugin (read the docs for details).
 * Meta: All field-types are implemented for meta-tabs now (with some limitations).
