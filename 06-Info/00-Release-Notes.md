@@ -2,6 +2,25 @@
 
 This is the version history with some release notes.
 
+## Version 1.3.1: Improved Meta Information
+
+_Release date: 09.01.2020_
+
+Version 1.3.1 improves the meta-information. Please update the system folder and the theme folder.
+
+The release includes:
+
+* Meta: Meta-tabs are added to raw mode now.
+* Meta: Create new meta-tabs with a plugin (read the docs for details).
+* Meta: All field-types are implemented for meta-tabs now (with some limitations).
+* Meta: Created date is added as standard meta.
+* Meta: Select a manual date for the article.
+* Meta: New logic for author field is implemented (account name of the logged in user with a fall back)
+* User: You can add a first and last name that can be used in themes for the author name.
+* UX: Configuration forms for plugins are not validated in frontend anymore. Required fields are only validated if plugin is activated.
+* Bug: Folder-scan is improved so that it does not render an empty list-item for an unpublished folder.
+* Documentation is updated and forms are described in a separate chapter.
+
 ## Version 1.3.0: Meta Information
 
 _Release date: 01.01.2020_
