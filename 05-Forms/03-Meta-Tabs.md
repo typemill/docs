@@ -1,6 +1,6 @@
 # Forms for Page Meta-Tabs
 
-With meta-tab, the authors can add meta-informations like a meta-title or a meta-description to a page. With a plugin, you can add your own fields to the meta-tab or even create your own tabs with the help of vue.js.
+Do you need a special meta-information for pages in your theme? Or do you want to create a SEO-tab for each page? No problem, because you can add your own meta-fields or even your own meta-tabs with a plugin and with the help of vue.js.
 
 [TOC]
 
@@ -30,11 +30,11 @@ metatabs:
 
 This will add a new select-field to the existing tab "meta".
 
-## Storage and Usage
+## Store and Use Meta-Information
 
-If the editor creates a new page called "mypage" and fills out the metatab, then the information is stored in the meta-file of that page called "mypage.yaml". 
+Similar to the famous "frontmatter", Typemill can store any kind of meta-information for a each content page. Different to frontmatter, Typemill does not store the meta-information in the markdown-file, but it creates a separate yaml-file to keep the markdown-file clean and readable.
 
-You can use the information in your twig-templates with the variable `metatabs` like this:
+Typemill uses some standard-meta-information like the title, the description and the author. But you can also add your own fields to the meta-tab and use all meta-information in your twig-templates with the variable `metatabs` like this:
 
 ```
 
@@ -53,12 +53,12 @@ use \Typemill\Plugin;
 
 class Example extends Plugin
 {	
-    public static function getSubscribedEvents()
-    {
+	public static function getSubscribedEvents()
+	{
 		return array(
 			'onMetaLoaded'		=> 'onMetaLoaded'
 		);
-    }
+	}
 	
 	public function onMetaLoaded($meta)
 	{
@@ -68,7 +68,6 @@ class Example extends Plugin
         {
             # make something green here
         }
-	}
 }
 
 ```
@@ -94,13 +93,13 @@ metatabs:
 
 ```
 
-If you activate the plugin, then you will already see a new tab called "mytab" above each page. 
+If you activate the plugin, then you will already see a new tab called "mytab" for each page. 
 
-However, if you click on the tab, the forms will not be visible. The reason is quite simple: Different to plugin-forms, theme-forms or public forms, the tab-forms are rendered with Vue.js and not with PHP. In order to render the forms, we have to activate the vue form generator.
+However, if you click on the tab, you will not see any forms yet. The reason is quite simple: Different to forms for plugins, themes or public pages, the forms for meta-tabs are rendered with Vue.js and not with PHP. In order to render the forms, you have to activate the vue form generator. This is done with a simple copy & paste.
 
 ## Add the Vue Component
 
-You can activate the vue form-generator in your plugin with a simple script. In the first step we add that script to the editor like this:
+You can activate the vue form-generator in your plugin with a simple script (a vue-component). In the first step we add that script to the editor like this:
 
 ```
 <?php
@@ -168,7 +167,7 @@ Vue.component('mytab', {
 	}
 })
 ```
-You can simply **copy and paste** this component, because the vue-component will basically always look the same. Just change the name of the component `Vue.component('mytab', {})` to the name of your tab. Please use an **unique name** for your tab, because there might be conflicts if another plugin uses the same name for a tab.
+You can simply **copy and paste** this component, because the vue-component will always look the same. Just change the name of the component `Vue.component('mytab', {})` to the name of your tab. Please use an **unique name** for your tab, because there might be conflicts if another plugin uses the same name for a tab.
 
 This is what the vue component does:
 
@@ -181,7 +180,7 @@ If you want to know how it works in detail, then check the file `vue-meta.js` in
 
 ## Extend the Vue Component
 
-The vue-component above just renders the forms and adds a store-button. You can, of course, extend the vue-component with all kind of functionality that you want. Imagine a seo-tab that fetches some statistics for the page from the API of the Google Search Console and displays some charts. I did not try this, but it is basically possible, of course.
+The vue-component above just renders the forms and adds a store-button. If you are a vue-developer, then you can do much more and extend the vue-component with all kind of functionality that you want. Imagine a seo-tab that fetches some statistics for the page from the API of the Google Search Console and displays some charts. I did not try this yet, but it is no problem for you, I guess.
 
 ## Limitations
 
