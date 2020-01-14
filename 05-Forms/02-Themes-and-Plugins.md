@@ -1,6 +1,6 @@
 # Configuration Forms for Themes and Plugins
 
-With configurations, you can add a lot of flexibility to your plugins and themes. And with forms, you can enable the authors to edit those configurations and to adapt the plugins and themes to his needs.
+Do you want to add some editable options to your plugin or to your theme? That is easily done with configuration forms and some lines of YAML.
 
 [TOC]
 
@@ -27,9 +27,9 @@ forms:
         classic: Classic
 ````
 
-This will add a selectbox with the three options and the name "layout". You can use all fields from the field overview.
+This form-definition will add a selectbox called "layout" to the theme configuration. You can use all fields from the [field overview](/forms/field-overview).
 
-## Storage Configurations
+## Store Configurations
 
 If the user fills out the configuration form of your plugin or theme and clicks on save, then the configuration will be stored in the `settings.yaml`-file that you can find in the folder `settings`. 
 
@@ -39,7 +39,7 @@ If you use the example above for a theme called "exampletheme", then Typemill wi
 ...
   themes:
     exampletheme:
-      layout: Edgeless
+      layout: edgeless
 ...
 ```
 
@@ -49,22 +49,22 @@ If you use a plugin called "exampleplugin", then it looks like this:
 ...
   plugins:
     exampleplugin:
-      layout: Edgeless
+      layout: edgeless
 ...
 ```
 
 
 ## Use Configurations
 
-You can use all stored configuration for a theme in your twig-templates with the `settings`-variable:
+In the twig-templates of your theme you can use all stored configurations with the `settings`-variable:
 
 ```
 {{ settings.themes.exampletheme.layout }} 
 ```
 
-This will print out "Edgeless".
+This will print out "edgeless".
 
-In your plugins you can use the stored values with the event `onSettingsLoaded`:
+In your plugin you can use the stored values with the event `onSettingsLoaded`:
 
 ```
 <?php
