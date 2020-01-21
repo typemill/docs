@@ -2,6 +2,22 @@
 
 This is the version history with some release notes.
 
+## Version 1.3.2: Rename and hide navigation
+
+_Release date: 21.01.2020_
+
+Version 1.3.2 improves the meta-information again and enables authors to rename and hide items in the navigation. Please update the system folder and the theme folder.
+
+The release includes:
+
+* Internationalization: JavaScript strings are now translated (vue.js).
+* Meta: Rename navigation items. This required a lot of new logic and a static file structure-extended.yaml in cache folder.
+* Meta: Hide item from public navigation (note, that it is only hidden from main-navigation, not from sub-navigation)
+* Meta: Filter the active meta-information for each page, so that no metas from disabled plugins are visible.
+* Themes: You can add fields to the standard-meta-tab with the themes yaml-file now.
+* Themes: You can now add your own CSS to each theme. Very handy to individualize a theme while keeping it updated.
+* Themes: Added a dev-theme to the theme-directory as a starting point for frontend-developers.
+
 ## Version 1.3.1: Improved Meta and Internationalization
 
 _Release date: 09.01.2020_
