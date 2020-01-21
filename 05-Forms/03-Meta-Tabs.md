@@ -6,7 +6,7 @@ Do you need a special meta-information for pages in your theme? Or do you want t
 
 ## Add Fields to a Tab
 
-By default, each page has a meta-tab called "meta". To add a new field to that tab, simply create a plugin with a new YAML definition, that starts with the keyword `metatabs` followed by the name of the tab `meta` like this:
+By default, each page has a meta-tab called "meta". To add a new field to that tab, simply create a plugin or a theme with a new YAML definition, that starts with the keyword `metatabs` followed by the name of the tab `meta` like this:
 
 ```
 name: Example Plugin
@@ -74,7 +74,7 @@ class Example extends Plugin
 
 ## Create a New Meta-Tab
 
-You can also create a new meta-tab for pages. Just add a new yaml-configuration to your plugin and give your meta-tab a name like this:
+With a plugin, you can also create a new meta-tab for pages. Just add a new yaml-configuration to your plugin and give your meta-tab a name like this:
 
 ```
 name: Example Plugin
