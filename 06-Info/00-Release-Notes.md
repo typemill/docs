@@ -2,6 +2,22 @@
 
 This is the version history with some release notes.
 
+## Version 1.3.3: Pages and Posts
+
+_Release date: 27.02.2020_
+
+Version 1.3.3 introduces posts for news- or blogs-sections. Please update the system folder.
+
+The release includes:
+
+* Posts: You can change the content of a folder from pages to posts now. Posts are sorted by date (manual date or created at) in descending order. Typemill will even change and rewrite the existing content within a folder. Pretty awesome!!!
+* Navigation: The file name and the name in the navigation are completely decoupled now, which means you can use special characters like in french language for navigation titles now.
+* Themes: There is a brand new knowledge theme!!!
+* Fix: Problem with & in title is fixed now.
+* Fix: Duplicate files and folders are checked now.
+* Fix: Folders with published pages cannot be deleted anymore.
+* Fix: Introduced field-attribute "fieldsize" with values "full", "half" and "quarter" for a better field layout (e.g. theme-settings).
+
 ## Version 1.3.2: Rename and hide navigation
 
 _Release date: 21.01.2020_
