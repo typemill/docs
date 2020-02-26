@@ -1,6 +1,8 @@
 # Quick Start for Theme-Developers
 
-Are you a professional web developer, and you don't want to read the whole documentation? No problem, this is all you need to know to create your own theme for TYPEMILL. 
+Are you a professional web developer, and you don't want to read the whole documentation? No problem, this is all you need to know to create your own theme for TYPEMILL.
+
+You can also use the [dev-theme](https://themes.typemill.net/dev) as a starting point. It contains a whole html- and twig-skeleton and you can directly start with your own css. 
 
 ## Theme Folder
 
