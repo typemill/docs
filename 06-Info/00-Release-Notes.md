@@ -2,6 +2,23 @@
 
 This is the version history with some release notes.
 
+## Version 1.3.4: Media Library
+
+_Release date: 07.04.2020_
+
+Version 1.3.4 introduces a new media-library for images and files.
+
+The release includes:
+
+* Media: A brand new media library that can be opened when working with images or files in the content page.
+* Media: Completely refactored the image model.
+* Media: A new upload component for download-files in the visual editor.
+* Media: You can upload a logo for your website in the settings now and use it in your theme.
+* Media: You can upload a favicon now and use it in your theme.
+* List Pages: You can now list pages for each folder in frontend with the new twig-tag `getPageList(navigation, path-to-folder, base_url)`
+* Fix: Hopefully fixed a super annoying bug where the wrong content opens in a block. Should be fixed by disabling drag&drop for blocks if they are opened and a wrong logic when publishing image-blocks.
+* Themes: Published the [emergency theme](https://themes.typemill.net/emergency) some days ago.
+
 ## Version 1.3.3: Pages and Posts
 
 _Release date: 27.02.2020_
