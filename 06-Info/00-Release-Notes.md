@@ -2,6 +2,35 @@
 
 This is the version history with some release notes.
 
+## Version 1.3.5: Consolidation
+
+_Release date: 20.04.2020_
+
+Version 1.3.5 is a consolidation release mostly with bugfixes and improvements.
+
+The release includes:
+
+* Feature: Add anchor-links next to headlines in content with a new system-setting. So far only the standard theme has an appropriate style for it.
+* Improvement: Form-Builder adds ID to fields for better accessibility.
+* Improvement: X-Powered-By header is now set in the http-response.
+* Improvement: Design of the download-button for files is optimized.
+* Fix: JPG-images are handled correctly in the editor now.
+* Fix: Hidden pages are also hidden from subnavigations and paging now.
+* Fix: Hidden pages correct loaded after cache refresh.
+* Fix: Special Startpage in standard theme has correct title now.
+* Fix: Navigation title is inserted in meta correctly now.
+* Fix: Modified date in meta is set correctly now.
+* Fix: New logic for title and description (on publish or if page is listed or called in frontend).
+* Fix: Posts are implemented into standard theme now.
+* Fix: Name in input field on base level navigation is cleared now.
+* Fix: Video handling is completely refactored.
+* Fix: File-upload accepts all standard filetypes now.
+* Fix: You can delete folders with unpublished content now.
+* Fix: A theme only needs a valid index.twig file to load in typemill.
+* Fix: Updated gitignore
+* New: The cypress test-scripts are part of the github version now.
+
+
 ## Version 1.3.4: Media Library
 
 _Release date: 07.04.2020_
