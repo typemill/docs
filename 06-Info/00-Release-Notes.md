@@ -8,6 +8,12 @@ _Release date: 20.04.2020_
 
 Version 1.3.5 is a consolidation release mostly with bugfixes and improvements.
 
+For an UPDATE, please upload the folders:
+
+* /system
+* /settings/languages
+* /themes/typemill
+
 The release includes:
 
 * Feature: Add anchor-links next to headlines in content with a new system-setting. So far only the standard theme has an appropriate style for it.
