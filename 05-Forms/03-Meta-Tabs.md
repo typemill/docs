@@ -140,7 +140,7 @@ We used the event `onTwigLoaded` to add the script, but you can also use other e
 In the next step we will create the script. The script is a simple vue-component that looks always like this:
 
 ```
-Vue.component('mytab', {
+Vue.component('tab-mytab', {
 	props: ['saved', 'errors', 'formdata', 'schema'],
 	template: '<section><form>' +
 				'<component v-for="(field, index) in schema.fields"' +
@@ -167,9 +167,9 @@ Vue.component('mytab', {
 	}
 })
 ```
-You can simply **copy and paste** this component, because the vue-component will always look the same. Just change the name of the component `Vue.component('mytab', {})` to the name of your tab. Please use an **unique name** for your tab, because there might be conflicts if another plugin uses the same name for a tab.
+You can simply **copy and paste** this component, because the vue-component will always look the same. Just change the name of the component `Vue.component('tab-mytab', {})` to the name of your tab with the prefix "tab-", so if the name of the tab is "maps", the call the vue.component "tab-maps". Please use an **unique and creative name** for your tab to avoid conflicts with other tabs from other plugins.
 
-This is what the vue component does:
+The vue component does the following magic:
 
 * It loops over the fields that you defined in your YAML file.
 * It dynamically adds the field component according to the type of each field.
@@ -187,7 +187,6 @@ The vue-component above just renders the forms and adds a store-button. If you a
 The meta-tabs are flexible as hell, but the actual vue-form-builder has some limitations compared to public forms or to configuration-forms for plugins and themes:
 
 * You cannot group the fields with **fieldsets**.
-* You cannot use the fieldtype **hidden**.
 * You cannot add text with the field-type **paragraph**.
 * You cannot use the **help** text.
 * You can use attributes like **required** or **pattern** in your yaml-definition. They are used for the backend validation, but they have no effect in the frontend.
