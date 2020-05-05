@@ -2,6 +2,30 @@
 
 This is the version history with some release notes.
 
+## Version 1.3.6: Image Upload Field
+
+_Release date: 06.05.2020_
+
+For an UPDATE, please upload the folders:
+
+* /system
+* /themes/typemill
+
+The release includes:
+
+* Feature: A new upload image fieldtype for meta-tabs (there is a standard hero image in meta tab now)
+* Feature: You can use admonitions now which is helpful for documentations. Use a syntax like "! My Admonition".
+* Feature: We got a russian translation from the contributor "hide-me", thank you from the community!!!
+* Improvement: iusvar has improved the i18n-feature dramatically again
+* Improvement: German translations are updated and added.
+* Improvement: Images in a separate line are now rendered as html5 figure and figcaption tags. This improves design-options dramatically
+* Improvement: You can now set the language tag for your frontend pages independently from your admin-language.
+* Fix: Active class is now set again when there are hidden pages.
+* Fix: Custom styles now work for 404-pages
+* Fix: fixed two php warnings
+* Fix: Search field for mobile views is not positioned absolute anymore and does not overlap anything
+* New: There is a new plugin for crossposting articles to the dev.to-community
+
 ## Version 1.3.5: Consolidation
 
 _Release date: 20.04.2020_
