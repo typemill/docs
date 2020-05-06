@@ -1,21 +1,21 @@
 # Markdown Reference and Test Page
 
-Markdown is a simple and universal syntax for text formatting. More and more writers are switching to Markdown because they can format their text during the writing process, without having to click any buttons. Once they are familiar with the Markdown syntax, they can write formatted text much easier and faster than with any standard HTML editor.
+Markdown is a simple and universal syntax for text formatting. More and more writers switch to markdown, because they can format their text during the writing process without using any format-buttons. Once they are familiar with the markdown syntax, they can write formatted text much easier and faster than with any standard HTML-editor.
 
-Developers love mMrkdown, because it is much cleaner and safer than HTML; and they can easily convert Markdown to a lot of other document formats like HTML and others.
+Developers love markdown, because it is much cleaner and saver than HTML. And they can easily convert markdown to a lot of other document formats like HTML and others.
 
-If you develop a theme for TYPEMILL, please take care that all elements on this page are styled properly.
+If you develop a theme for TYPEMILL, please take care that all elements on this page are designed properly.
 
 ## Table of Contents
 
-To create a table of contents, simply write `[TOC]` on its own line. It will be replaced with a table of contents like this automatically.
+To create a table of contents, simply write `[TOC]` in a separate line. It will be replaced with a table of contents like this automatically.
 
 [TOC]
 
 ## Headlines
 
 ```
-Headlines are simply done with hash characters like this:
+Headlines are simply done with hash chars like this:
 # First Level Headline
 ## Second Level Headline
 ### Third Level Headline
@@ -24,39 +24,39 @@ Headlines are simply done with hash characters like this:
 ###### Sixth Level Headline
 ```
 
-### Third Level Headline {.myclass}
+### Third Level Headline
 
-A third headline is prioritized lower than a second level headline.
+A third headline is more decent and lower prioritized than a second level headline.
 
 #### Fourth Level Headline
 
-A fourth level headline prioritized lower than a third level headline.
+A fourth level headline is more decent and lower prioritized than a third level headline.
 
 ##### Fifth Level Headline
 
-A fifth level headline is prioritized lower than a fourth level headline.
+A fifth level headline is more decent and lower prioritized than a fourth level headline.
 
 ##### Sixth Level Headline
 
-A sixth level headline is prioritized lower than a fifths level headline.
+A sixth level headline is more decent and lower prioritized than a fifths level headline.
 
-## Paragraph
+##Paragraph
 
 ````
-A paragraph is a simple text block separated with a new line above and below.
+A paragraph is a simple text-block separated with a new line above and below.
 ````
 
-A paragraph is a simple text block separated with a new line above and below.
+A paragraph is a simple text-block separated with a new line above and below.
 
 ## Soft Linebreak
 
 ````
-For a soft linebreak (eg. for dialog in literature), add two spaces at the end of a line and press "Enter".
-She said: "Hello."  
-He said: "Again."
+For a soft linebreak (eg. for dialoges in literature), add two spaces at the end of a line and use a simple return.
+She said: "Hello"  
+He said: "again"
 ````
 
-For a soft linebreak (eg. for dialog in literature), add two spaces at the end of a line and press "Enter".
+For a soft linebreak (eg. for dialoges in literature), add two spaces at the end of a line and use a simple return.
 
 She said: "Hello"  
 He said: "again"
@@ -64,21 +64,21 @@ He said: "again"
 ##Emphasis
 
 ````
-For italic text use one *asterisk*, or one _underscore_.
-For bold text use two **asterisks**, or two __underscores__.
+For italic text use one *asterix* or one _underscore_.
+For bold text use two **asterix** or two __underscores__.
 ````
 
-For italic text use one *asterisk*, or one _underscore_.
+For italic text use one *asterix* or one _underscore_.
 
-For bold text use two **asteriskd**, or two __underscores__.
+For bold text use two **asterix** or two __underscores__.
 
-## Lists
+##Lists
 
 ````
 For an unordered list use a dash
 - like 
 - this
-Or use one asterisk
+Or use one asterix
 * like
 * this
 For an ordered list use whatever number you want and add a dot:
@@ -91,7 +91,7 @@ For an unordered list use a dash
 - like 
 - this
 
-Or use one asterisk
+Or use one asterix
 
 * like
 * this
@@ -104,15 +104,15 @@ For an ordered list use whatever number you want and add a dot:
 ## Horizontal Rule
 
 ```
-A horizontal rule is easily created with three dashes like this:
+Easily created for example with three dashes like this:
 ---
 ```
 
-A horizontal rule is easily created with three dashes like this:
+Easily created for example with three dashes like this:
 
 ---
 
-## Links
+##Links
 
 ````
 This is an ordinary [Link](http://typemill.net).
@@ -132,67 +132,77 @@ You can even add [ids or classes](http://typemill.net){#myid .myclass}.
 
 Or you can use a shortcut like http://typemill.net.
 
-## Images
+##Images
 
 ````
-Images use the same rules as with links, but with a "!"
+The same rules as with links, but with a !
 ![alt-text](media/markdown.png)
+*With caption*
 ![alt-text](media/markdown.png "my title"){#myid .imgClass}
+*With caption that spans over several lines*
 ![alt-text](media/markdown.png "my title"){#myid .otherclass width=150px}
 ````
 
-Images use the same rules as with links, but with a "!"
+The same rules as with links, but with a !
 
-![alt-text](media/markdown.png)
+![alt-text](media/markdown.png){.center}
+*With Caption*
 
-![alt-text](media/markdown.png "my title"){#myid .imgClass}
+![alt-text](media/markdown.png  "my title"){#myid .imgClass}
+*With a caption that spans over several lines.*
 
 ![alt-text](media/markdown.png "my title"){#myid .otherclass width=150px}
 
 ## Linked Images
 
 ````
-You can link an image with nested syntax like this:
+You can link an image with a nested syntax like this:
 [![alt-text](media/markdown.png)](https://typemill.net)
 ````
 
-You can link an image with nested syntax like this:
+You can link an image with a nested syntax like this:
 
 [![alt-text](media/markdown.png){.imgClass}](https://typemill.net)
 
 ## Image Position
 
 ````
-You can control the image position with the classes .left, .right, and .middle like this:
+You can controll the image position with the classes .left, .right and .middle like this:
 ![alt-text](media/markdown.png){.left}
+*With caption that spans over several lines*
 ![alt-text](media/markdown.png){.right}
-![alt-text](media/markdown.png){.middle}
+*With caption that spans over several lines*
+![alt-text](media/markdown.png){.center}
+*With caption that spans over several lines*
 ````
 
 ![image float left](media/markdown.png){.left}
+*With caption that spans over several lines*
 
-The first image should float on the left side of this paragraph. This might not work with all themes. If you are a theme developer, please ensure that you support the image classes "left", "right", and "middle". In the writer's UI, you can add these classes manually in the raw text mode, or you can assign them in the visual mode when you edit a picture (double click on it to open the dialog.)
+The first image should float on the left side of this paragraph. This might not work with all themes. If you are a theme developer, please ensure that you support the image classes "left", "right" and "center". You can add these classes manually in the raw mode or you can assign them in the visual mode when you edit a picture (double click on it to open the dialog). Images in a separate line are rendered with the html5 elements `figure` and `figcapture`.
 
 ![image float right](media/markdown.png){.right}
+*With caption that spans over several lines*
 
-The second image should float on the right side of this paragraph. T
+The second image should float on the right side of this paragraph. This might not work with all themes. If you are a theme developer, please ensure that you support the image classes "left", "right" and "center". You can add these classes manually in the raw mode or you can assign them in the visual mode when you edit a picture (double click on it to open the dialog). Images in a separate line are rendered with the html5 elements `figure` and `figcapture`.
 
-![image middle](media/markdown.png){.middle}
+![image center](media/markdown.png){.center}
+*With caption that spans over several lines*
 
-The third image should be placed above this paragraph and centered to the middle of the content area.
+The thirds image should be placed above this paragraph and centered to the middle of the content area. This might not work with all themes. If you are a theme developer, please ensure that you support the image classes "left", "right" and "center". You can add these classes manually in the raw mode or you can assign them in the visual mode when you edit a picture (double click on it to open the dialog). Images in a separate line are rendered with the html5 elements `figure` and `figcapture`.
 
 ## Blockquote
 
 ```
-There are always some women and men with wise words,
+There are always some women and men with wise words
 > But I usually don't read them, to be honest.
 ```
 
-There always some women and men with wise words,
+There always some women and men with wise words
 
 > But I usually don't read them, to be honest.
 
-## Footnotes
+##Footnotes
 
 ````
 You can write footnotes[^1] with markdown. 
@@ -206,7 +216,7 @@ You can write footnotes[^1] with markdown.
 
 Scroll down to the end of the page[^2] and look for the footnotes. 
 
-Footnotes won't work with the visual editor right now, so please use the raw text mode for them.
+Footnotes won't work with the visual editor right now, so please use the raw mode for them.
 
 ## Abbreviations
 
@@ -231,10 +241,29 @@ Orange
 ````
 
 Apple
-:   Pomaceous fruit of plants of the genus Malus in the family Rosaceae.
+:   Pomaceous fruit of plants of the genus Malus in 
+the family Rosaceae.
 
 Orange
 :   The fruit of an evergreen tree of the genus Citrus.
+
+
+
+## Notices
+
+You can create different notices if you add a '!', '!!', '!!!', '!!!!' before a line. This will wrap the content into a div-class with the classes `notice1`, `notice2`, `notice3` and `notice4`. You can also span notices over several lines. This logic follows some other CMS like Grav, Lektor or Yellow and it is not compatible with other markdown processors or editors.
+
+! Notice 1
+! 
+! Please note that you can use **markdown** inside of the notice so you can *format* your text here.
+
+!! Notice 2
+!! 
+!! Please note that you can use **markdown** inside of the notice so you can *format* your text here.
+
+!!! Notice 3
+!!! 
+!!! Please note that you can use **markdown** inside of the notice so you can *format* your text here.
 
 ## Tables
 
@@ -253,14 +282,14 @@ Orange
 ## Code
 
 ````
-Let us create some `<?php inlineCode(); ?>` like this.
+Let us create some `<?php inlineCode(); ?>` like this
 ````
 
-Let us create some `<?php inlineCode(); ?>` and now let's check, if the code block works:
+Let us create some `<?php inlineCode(); ?>` and now let us check, if a codeblock works:
 
 ````
-Use four apostrophes like this:  
-\`​```
+Use four apostroph like this:  
+\````
 <?php
 	$welcome = 'Hello World!';
 	echo $welcome;
@@ -268,31 +297,25 @@ Use four apostrophes like this:
 \````
 ````
 
-Which will result in:
-
-````
-<?php
-	$welcome = 'Hello World!';
-	echo $welcome;
-?>  
-````
 ## Math
 
-Please activate the math plugin to use mathematical expressions. You can choose between MathJax or the newer KaTeX library. If you don't want to fetch code from a CDN, use KaTeX instead. The Markdown syntax in TYPEMILL is the same for both libraries: 
+Please activate the math-plugin to use mathematical expressions with LaTeX syntax. You can choose between MathJax or the newer KaTeX library. MathJax is included from a CDN, KaTeX is included in the plugin. So if you don't want to fetch code from a CDN, use KaTeX instead. The markdown syntax in TYPEMILL is the same for both libraries.
 
 ````
-Use inline $x = \int_{0^1}^1(-b \pm \sqrt{b^2-4ac})/(2a)$ math
-Use inline \(x = \int_{0^1}^1(-b \pm \sqrt{b^2-4ac})/(2a)\) math.
+Write inline math with \(...\) or $...$ syntax.
+inline $x = \int_{0^1}^1(-b \pm \sqrt{b^2-4ac})/(2a)$ math
+inline \(x = \int_{0^1}^1(-b \pm \sqrt{b^2-4ac})/(2a)\) math
 ````
 
-Use inline math $x = \int_{0^1}^1(-b \pm \sqrt{b^2-4ac})/(2a)$ like this. 
+inline $x = \int_{0^1}^1(-b \pm \sqrt{b^2-4ac})/(2a)$ math
+
+inline \(x = \int_{0^1}^1(-b \pm \sqrt{b^2-4ac})/(2a)\) math
 
 ````
-Display math like this 
+Write display math with $$...$$ or \[...\] syntax.  
 $$
 x = \int_{0^1}^1(-b \pm \sqrt{b^2-4ac})/(2a)
 $$
-or this
 \[
 x = \int_{0^1}^1(-b \pm \sqrt{b^2-4ac})/(2a)
 \]
