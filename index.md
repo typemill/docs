@@ -1,3 +1,4 @@
-# TYPEMILL
+# Typemill
 
-*If text is your profession, then Typemill is your CMS.*
+The open-source flat-file cms for text-driven websites. Create handbooks, documentations, manuals, web-novels, traditional websites, and more.
+
