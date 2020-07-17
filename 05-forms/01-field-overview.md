@@ -25,6 +25,7 @@ type: color
 type: date
 type: email
 type: hidden
+type: image
 type: number
 type: password
 type: radio
@@ -186,6 +187,19 @@ forms:
     myhiddenfield:
       type: hidden
       value: Do not forget to add a value
+````
+
+### image
+
+You can add images in meta-tabs, themes and plugins. Images do not work with public forms right now and they do not support any additional attributes.
+
+````
+forms:
+  fields:
+   
+    myimagefield:
+      type: image
+      description: Maximum size of images is 2 MB. Only accepts png, jpeg and gif.
 ````
 
 ### number

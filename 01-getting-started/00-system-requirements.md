@@ -6,7 +6,15 @@ Typemill is a modern and lightweight software with nearly no requirements. All y
 - **A webserver (Apache)**
 - **mod_rewrite** and **htaccess**
 
-Almost any hosting package provides a webserver with PHP. If you've ever hosted your own website, then chances are high that you can run TYPEMILL there without any problems. If you run a Linux system, then double check that `mod_rewrite` and `htaccess` are active.
+!! **For Linux users**
+!! 
+!! If you run a linux system, then please double check that `mod_rewrite` and `htaccess` are active.
+
+Almost any hosting package provides a webserver with PHP. If you've ever hosted your own website, then chances are high that you can run TYPEMILL there without any problems.
+
+!!**Build-in PHP**
+!!
+!!If you are using the build-in php-server on Windows or Mac, then make sure that some basic libraries are installed. Typemill needs `mbstring`, `iconv`,  `session`, `gd`, and `fileinfo`. You can check that with `phpinfo()`. 
 
 You will need FTP software to upload TYPEMILL to your webserver.
 

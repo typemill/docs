@@ -6,31 +6,34 @@ When TYPEMILL goes through this life cycle, it constantly fires events and often
 
 This is a list of all events that TYPEMILL fires during the life cycle. The order of the events follows the life cycle. In the last column, you can find the data that each event passes to your subscriber method.
 
-| Event Name           | Description                              | Data                                 |
-| -------------------- | ---------------------------------------- | ------------------------------------ |
-| onPluginsLoaded      | TYPEMILL has loaded all plugins.         | No data                              |
-| onSettingsLoaded     | TYPEMILL has loaded and merged all settings. This includes the basic app settings, all plugin settings, and the individual user settings. | Settings (a slim-object)             |
-| onSessionSegmentsLoaded      | TYPEMILL has loaded all all session segments, which should start a session.         | Empty Array (array) |
-| onTwigLoaded         | TYPEMILL has loaded the template engine Twig. | No data                              |
-| onPagetreeLoaded     | TYPEMILL has scanned the content folder, and has generated the content structure. | Content structure (array of objects) |
-| onBreadcrumbLoaded   | TYPEMILL has created a breadcrumb for the page. | Breadcrumb (array)                   |
-| onItemLoaded         | TYPEMILL has created the page item.      | Item (object)                        |
-| onMarkdownLoaded     | TYPEMILL has loaded the page content.    | Page content (markdown syntax)       |
-| onContentArrayLoaded | TYPEMILL has transformed the page content into an array. | Page content (array)                 |
-| onHtmlLoaded         | TYPEMILL has transformed the Markdown content to HTML (with the Parsedown library). | Page content (html syntax)           |
-| onPageReady          | TYPEMILL has collected all data for the page, and will send it to the template in the next step. | All page data (array)                |
-| onPagePublished     | TYPEMILL has published a content page.    | Page item (obejct)       |
-| onPageUnpublished     | TYPEMILL has unpublished a content page.    | Page item (object)       |
-| onPageDeleted     | TYPEMILL has deleted a page.    | Page item (object)       |
-| onPageSorted     | TYPEMILL has sorted/moved a page.    | Input Params with old and new position (array)       |
-
+| Event Name | Description | Data | 
+|---|---|---|
+| onPluginsLoaded | TYPEMILL has loaded all plugins. | No data | 
+| onSettingsLoaded | TYPEMILL has loaded and merged all settings. This includes the basic app settings, all plugin settings, and the individual user settings. | Settings (a slim-object) | 
+| onRolesPermissionsLoaded | TYPEMILL has loaded the standard roles and permissions. | Roles and Permissions (array) | 
+| onResourcesLoaded | TYPEMILL has loaded the resources (simple strings), where a role has a permission to. | Resources (array) | 
+| onSessionSegmentsLoaded | TYPEMILL has loaded all session segments. A session segment is a part of the url like `/tm/` that starts a session. | Empty Array (array) | 
+| onTwigLoaded | TYPEMILL has loaded the template engine Twig. | No data | 
+| onUserfieldsLoaded | TYPEMILL has loaded the input-field-definitions of a user for updating his profile depending on his role. | Field-Definition (array) | 
+| onSystemnaviLoaded | TYPEMILL has loaded the navigation for the system settings in the author interface. | System Navigation (array) | 
+| onPagetreeLoaded | TYPEMILL has scanned the content folder, and has generated the content structure. | Content structure (array of objects) | 
+| onBreadcrumbLoaded | TYPEMILL has created a breadcrumb for the page. | Breadcrumb (array) | 
+| onItemLoaded | TYPEMILL has created the page item. | Item (object) | 
+| onMetaLoaded | TYPEMILL has loaded the meta-information of a page. | Meta-infos (array) | 
+| onMarkdownLoaded | TYPEMILL has loaded the page content. | Page content (markdown syntax) | 
+| onContentArrayLoaded | TYPEMILL has transformed the page content into an array. | Page content (array) | 
+| onHtmlLoaded | TYPEMILL has transformed the Markdown content to HTML (with the Parsedown library). | Page content (html syntax) | 
+| onPageReady | TYPEMILL has collected all data for the page, and will send it to the template in the next step. | All page data (array) | 
+| onPagePublished | TYPEMILL has published a content page. | Page item (obejct) | 
+| onPageUnpublished | TYPEMILL has unpublished a content page. | Page item (object) | 
+| onPageDeleted | TYPEMILL has deleted a page. | Page item (object) | 
+| onPageSorted | TYPEMILL has sorted/moved a page. | Input Params with old and new position (array) | 
 
 If TYPEMILL passes data to your subscriber method, then you can get the data, use the data, manipulate the data, and return the data to the app. You can do this with two simple methods: `getData()` and `setData()`.
 
 Let's take the HTML event as an example:
 
 ````
-
 class MyPlugin extends \Typemill\Plugin
 {
     public static function getSubscribedEvents()
@@ -39,13 +42,10 @@ class MyPlugin extends \Typemill\Plugin
 			'onHtmlLoaded' 		=> 'onHtmlLoaded'
 		);
     }
-
 	public function onHtmlParsed($html)
 	{
 		$data = $html->getData();
-
 		$data .= '<p>This is a paragraph that I added at the end of the page content</p>';		
-
 		$html->setData($data);
 	}
 }
@@ -71,3 +71,4 @@ There are not many use cases for accessing the event name or the dispatcher in t
 The dependency container is one of the properties and methods provided by TYPEMILL's basic plugin class. Because all plugins extend this basic plugin class, all plugins have access to these useful properties and methods.
 
 We'll learn  more about that in the next chapter.
+

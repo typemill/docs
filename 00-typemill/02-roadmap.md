@@ -1,6 +1,6 @@
 # Roadmap
 
-There are a lot of plans for future releases of TYPEMILL, but it's meant to embrace simplicity. To prevent TYPEMILL from becomming a feature soup, it will strictly focus on the needs of writers.
+There are a lot of plans for future releases of TYPEMILL, but it's meant to embrace simplicity. To prevent TYPEMILL from becoming a feature soup, it will strictly focus on the needs of writers.
 
 Here are some **milestones** from the past:
 
@@ -44,3 +44,4 @@ In the long run, TYPEMILL should become a lightweight (but fully featured) publi
 * Plugins for comments, RSS, E-Mails, newsletters, and much more.
 
 You can find a detailed roadmap on [GitHub](https://github.com/typemill/typemill/issues/35). If you miss a feature, or if you found a bug, please report it as an issue on [GitHub](https://github.com/trendschau/typemill).
+
