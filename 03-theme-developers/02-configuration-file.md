@@ -8,7 +8,7 @@ It is highly recommended to add some meta-information to your theme. This is qui
 
 ## Add Basic Informations 
 
-The basic informations in the YAML-file look like this: 
+The basic information in the YAML-file should look like this: 
 
 ```
 name: My Theme Name
