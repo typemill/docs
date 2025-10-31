@@ -1,4 +1,4 @@
-# Getting Started
+#  Getting Started
 
-Simply download Typemill and immediately start publishing. Typemill runs with **PHP7+** on apache webservers. **No database** is required, but your server must support mod_rewrite and htaccess.
+Typemill operates with **PHP 8.1 - PHP 8.3**  on web servers like Apache or Nginx. **No database** is needed. This chapter will guide you through the installation process.
 

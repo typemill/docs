@@ -1,0 +1,1 @@
+["# urlinfo","The method `$this->urlinfo()` retrieves information about the current URL.","* **@return:** (array) Returns an array containing information about the current URL."]
