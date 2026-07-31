@@ -1,6 +1,6 @@
 # Typemill Documentation and Guides
 
-Welcome to the official **Typemill Documentation**! This guide provides everything you need to get started, manage content, and extend Typemill with themes and plugins. Changed
+Welcome to the official **Typemill Documentation**! This guide provides everything you need to get started, manage content, and extend Typemill with themes and plugins. Unchanged
 
 ## Sections
 
