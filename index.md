@@ -1,14 +1,8 @@
-# Typemill Documentation and Guides
+#  Typemill Documentation and Guides
 
-Welcome to the official **Typemill Documentation**! This guide provides everything you need to get started, manage content, and extend Typemill with themes and plugins.
+Welcome to the official **Typemill Documentation**. This guide covers everything you need to get started with Typemill, manage your content, and extend your site with themes and plugins. You can use the navigation, the search, and the chatbot below to get started.
 
-## Sections
+[:askthedocs :]
 
-- [Getting Started](/getting-started) – Download and install Typemill.
-- [Author Guide](/author-guide) – Learn how to create, structure, and publish content with Typemill.
-- [Admin Guide](/admin-guide) – Manage settings, users, and system configurations.
-- [Theme Developers](/theme-developers) – Customize the look and feel of your site with themes.
-- [Plugin Developers](/plugin-developers) – Extend Typemill’s functionality with custom plugins.
-- [Forms](/forms) – Define forms for plugins and themes with YAML.
-- [API](/api) – Interact with Typemill programmatically using the API.
+The chatbot is powered by the Typemill plugin [askthedocs](https://plugins.typemill.net/askthedocs), which demonstrates a lightweight approach to AI integration without RAG or other complex dependencies.
 
