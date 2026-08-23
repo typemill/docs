@@ -2,7 +2,7 @@
 
 Typemill is a lightweight software with minimal requirements. All you need is:
 
-* **PHP 8.1 - 8.4**
+* **PHP 8.2 - 8.5**
 * **A web server** (Apache preferred; NGINX and IIS are also possible)
 * **FTP** or another method to upload files to your server
 * **No database** is required; Typemill stores everything in files.
