@@ -2,10 +2,10 @@
 
 Typemill currently requires the following PHP versions:
 
-* PHP 8.1
 * PHP 8.2
 * PHP 8.3
-* PHP 8.4 supported by Typemill Core but not by all plugins.
+* PHP 8.4 
+* PHP 8.5
 
 Typemill uses some standard extensions that are supported by most hosting providers out of the box. If you use minimal PHP distributions like PHP-FPM, ensure that the following extensions are installed:
 
