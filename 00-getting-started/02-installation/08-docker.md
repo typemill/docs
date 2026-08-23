@@ -1,15 +1,31 @@
 #  Run Typemill with Docker
 
-The Typemill repository contains a Dockerfile that helps you create your own Docker image locally. The Dockerfile is a community contribution by [Matthieu Borgognon](https://github.com/matbgn). You can also use the [official image on DockerHub](https://hub.docker.com/r/kixote/typemill) or try any [community image](https://hub.docker.com/search?q=Typemill).
+The Typemill repository contains a Dockerfile that helps you create your own Docker image locally. You can also use the [official image on DockerHub](https://hub.docker.com/r/kixote/typemill). 
 
-! **Note:** The Docker image in the Typemill repository does not provide TLS support. It's perfect either for local use or behind your own proxy.
+The Dockerfile is a community contribution by [Matthieu Borgognon](https://github.com/matbgn). 
+
+## Use DockerHub
+
+Pull Typemill from DockerHub:
+
+```bash
+docker pull kixote/typemill
+```
+
+Start a Typemill container:
+
+```bash
+docker run -d --name typemill -p 8080:80 kixote/typemill
+```
+
+Typemill will now be available at http://localhost:8080.
 
 ## Local Setup
 
 Clone the Typemill repository:
 
 ```
-git clone git://github.com/trendschau/typemill.git
+git clone https://github.com/typemill/typemill.git
 cd typemill
 ```
 
@@ -32,6 +48,7 @@ docker run -d \
     --name=typemill \
     -p 8080:80 \
     -v $(pwd)/typemill_data/settings/:/var/www/html/settings/ \
+    -v $(pwd)/typemill_data/settings/users:/var/www/html/settings/users \
     -v $(pwd)/typemill_data/media/:/var/www/html/media/ \
     -v $(pwd)/typemill_data/data/:/var/www/html/data/ \
     -v $(pwd)/typemill_data/cache/:/var/www/html/cache/ \
@@ -44,13 +61,16 @@ docker run -d \
 A simple `docker-compose.yml` file could look like this:
 
 ```yml
-version: "2.0"
+version: "3.8"
 
 services:
   typemill:
     image: typemill:local
+    environment:
+      TYPEMILL_PROXY_DETECTION: "true"
     volumes:
       - ./typemill_data/settings/:/var/www/html/settings/
+      - ./typemill_data/settings/users/:/var/www/html/settings/users/
       - ./typemill_data/media/:/var/www/html/media/
       - ./typemill_data/data/:/var/www/html/data/
       - ./typemill_data/cache/:/var/www/html/cache/
@@ -59,6 +79,7 @@ services:
       - ./typemill_data/themes/:/var/www/html/themes/
     ports:
       - 8080:80
+
 ```
 
 ## Volumes
@@ -70,4 +91,24 @@ services:
 * `plugins`: persists installed plugins (optional and empty by default)
 * `content`: persists published content (will be initialized with default examples if the bound volume is empty)
 * `themes`: persists installed themes (will be initialized with default examples if the bound volume is empty)
+
+## TLS and Proxy
+
+The Docker image in the Typemill repository does not provide TLS support. It's perfect either for local use or behind your own proxy.
+
+Proxy detection is enabled by default with the `TYPEMILL_PROXY_DETECTION` environment variable:
+
+```yaml
+environment:
+  TYPEMILL_PROXY_DETECTION: "true"
+```
+
+You can disable proxy detection:
+
+```yaml
+environment:
+  TYPEMILL_PROXY_DETECTION: "false"
+```
+
+Make sure your reverse proxy forwards the appropriate `X-Forwarded-*` headers. You should also add trusted proxies in the developer settings of Typemill.
 
