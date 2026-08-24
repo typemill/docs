@@ -48,7 +48,6 @@ docker run -d \
     --name=typemill \
     -p 8080:80 \
     -v $(pwd)/typemill_data/settings/:/var/www/html/settings/ \
-    -v $(pwd)/typemill_data/settings/users:/var/www/html/settings/users \
     -v $(pwd)/typemill_data/media/:/var/www/html/media/ \
     -v $(pwd)/typemill_data/data/:/var/www/html/data/ \
     -v $(pwd)/typemill_data/cache/:/var/www/html/cache/ \
@@ -70,7 +69,6 @@ services:
       TYPEMILL_PROXY_DETECTION: "true"
     volumes:
       - ./typemill_data/settings/:/var/www/html/settings/
-      - ./typemill_data/settings/users/:/var/www/html/settings/users/
       - ./typemill_data/media/:/var/www/html/media/
       - ./typemill_data/data/:/var/www/html/data/
       - ./typemill_data/cache/:/var/www/html/cache/
@@ -79,7 +77,6 @@ services:
       - ./typemill_data/themes/:/var/www/html/themes/
     ports:
       - 8080:80
-
 ```
 
 ## Volumes
