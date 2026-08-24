@@ -4,13 +4,7 @@ Get started with Typemill quickly and easily! This guide will help you set up yo
 
 ## Install Typemill
 
-If you already have a PHP-based website, installing Typemill should take less than five minutes. Follow these steps:
-
-1. Check the [requirements](/getting-started/requirements). Ensure you have a web server (e.g., Apache or Nginx) and PHP 8+.
-2. [Download Typemill](/getting-started/installation/download) as a ZIP file, or use Git, Composer, or Docker.
-3. Upload the files to your server and verify the [permissions](/getting-started/installation/permissions) for the files and folders.
-
-For detailed installation instructions, refer to the specific guides for [localhost](/getting-started/installation/localhost), [Apache](/getting-started/installation/apache), [Nginx](/getting-started/installation/nginx), and [Docker](/getting-started/installation/docker).
+If you already have a PHP-based website, installing Typemill should take less than five minutes. You can install Typemill manually, via GitHub, or with DockerHub. Just follow the [short installation guide](/getting-started/installation).
 
 ## Create Your First User
 
