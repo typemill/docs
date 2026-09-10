@@ -2,7 +2,7 @@
 
 If you click on the AI icon at the top right of each page, the article will open in the "Generate" tab of the Kixote interface. Here, you have all the tools you need to improve existing articles or generate new content with AI.
 
-![Screenshot of an article in the Kixote AI interface](media/live/kixote-ai-interface.webp){.center loading="lazy" width="820" height="540"}
+![Screenshot of an article in the Kixote AI interface](media/live/kixote-ai-internface.webp){.center loading="lazy" width="820" height="540"}
 
 You will find two sub-tabs:
 
