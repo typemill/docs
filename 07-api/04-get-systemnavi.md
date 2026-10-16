@@ -9,7 +9,7 @@ The minimum role for authorization is "member".
 ## Endpoint
 
 ```http
-GET /api/v1/systemnavi/
+GET /api/v1/systemnavi
 ```
 
 ## Request Example

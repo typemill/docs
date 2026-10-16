@@ -50,5 +50,3 @@ curl -X GET 'http://localhost/typemill/api/v1/users/getbyrole?role=administrator
 }
 ```
 
-5est
-

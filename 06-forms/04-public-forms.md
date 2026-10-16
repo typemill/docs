@@ -4,7 +4,7 @@ Public forms, like contact or newsletter subscription forms, are a common requir
 
 ## Form Definitions
 
-Public forms are defined in a separate block of the YAML-configuration-file of your plugin. Public forms can use the exact same [field definitions](/for-plugin-developers/documentation/field-overview) as theme- and plugin-forms. Look at this example:
+Public forms are defined in a separate block of the YAML-configuration-file of your plugin. Public forms can use the exact same [field definitions](/forms/field-overview) as theme- and plugin-forms. Look at this example:
 
 ````
 forms:
@@ -110,18 +110,17 @@ In the next step, let us create the method `showRegistrationForm` to display the
 ```
 public function showRegistrationForm($request, $response, $args)
 {
-            $twig   = $this->getTwig();  // ge the twig-object
+        $twig   = $this->getTwig();  // get the twig-object
         $loader = $twig->getLoader();  // get the twig-template-loader  
         $loader->addPath(__DIR__ . '/templates');
         $settings = $this->getSettings();
         # get the public forms for the plugin
-        $registerform = $this->generateForm('register', 'register.create');
+        $registerform = $this->generateForm('register.create');
         return $twig->render($response, '/register.twig', ['settings' => $settings, 'registerform' => $registerform ]);
 }
 ```
 
-
-All you have to add here is the name of the plugin (`register`) and the name of the route where you want to send the data. In this case it is our second post-route with the name `register.create`.
+The first parameter of `generateForm()` is the name of the route where you want to send the data, in this case it is our post-route with the name `register.create`. The plugin name is detected automatically from the plugin class, but you can pass it as an optional second parameter if needed.
 
 Now let us create that method to handle the form-data. 
 
@@ -132,14 +131,18 @@ public function createUser($request, $response, $args)
     $params = $this->validateParams($request->getParams());
     if(!$params)
     {
-        return $response->withRedirect($this->container['router']->pathFor('register.show'));
+        # validation failed, redirect back to the form (errors are stored in the session automatically)
+        $url = $this->container->get('routeParser')->urlFor('register.show');
+        return $response->withRedirect($url);
     }
-    return $response->withRedirect($this->container['router']->pathFor('welcome'));
+
+    # validation passed, do something with the params (e.g. create the user) and redirect
+    $url = $this->container->get('routeParser')->urlFor('home');
+    return $response->withRedirect($url);
 }
 ````
 
-
-This is super simplified but it is more or less all you have to do. The method `$this->validateParams($request->getParams())` will validate all incoming params from the user against the original form-definitions and it will return only the relevant params and strip out security-related params like csrf and more. You can, of course, do more validations if you want. And you probably want to do something with the params like store them somewhere. All this depends on the logic of your plugin.
+This is super simplified but it is more or less all you have to do. The method `$this->validateParams($request->getParams())` will validate all incoming params from the user against the original form-definitions and it will return only the params that are defined in the YAML form definition, everything else is stripped out. If the validation fails, the method returns `false` and stores the error messages in the session, so the form can display them after the redirect. You can, of course, do more validations if you want. And you probably want to do something with the params like store them somewhere. All this depends on the logic of your plugin.
 
 ## Security
 
@@ -155,24 +158,19 @@ The developer is responsible to validate all incoming params from the form. To m
 
 You can also add a regular expression to each field. The input data will be validated against this regular expression before the data is stored.
 
-### CSRF Protection
+### Bot Protection with Honeypot
 
-Typemill automatically adds a csrf-protection to all forms, public and non-public. A csrf-protection makes sure that 
+Typemill will automatically add a honeypot field to all public forms. A honeypot field is a input field (text) that is visually hidden in frontend. If a bot fills it out (because it does not notice that it is hidden), then the bot will automatically be redirected to the startpage after submitting the form.
 
-### Honeypot
+Additionally, all web forms require a `Referer` header, which filters out simple bots and scripts that do not send this header.
 
-Typemill will automatically add a honeypot field to all public forms. A honeypot field is a input field (text) that is visually hidden in frontend. If a bot fills it out (because it does not notice that it is hidden), then the bot will automatically redirected to the startpage after submitting the form.
+Please note that Typemill does not add CSRF-tokens to public forms right now. If your form performs critical actions, you should consider adding your own CSRF protection in your plugin.
 
 ### Captcha
 
-Typemill will automatically add a traditional captcha field with a text-image to all public forms. A user can only submit a form if he fills out the captcha correctly. If the captcha is incorrect, then the user will be redirected to the form again and the data are not stored. This is a standard measure to protect forms from spam-bots and other techniques.
+Typemill ships with a traditional captcha field with a text-image (gregwar php captcha) for public forms. A user can only submit a form if he fills out the captcha correctly. If the captcha is incorrect, then the user will be redirected to the form again and the data are not stored. This is a standard measure to protect forms from spam-bots and other techniques.
 
-In your plugin you can integrate the option to:
-
-* disable the captcha completely
-* to show the captcha only after a wrong initial input.
-
-To do so, please add the following radio-buttons in your plugin settings: 
+The captcha is **not activated automatically**. To use it, you have to add the following radio-buttons to the settings of your plugin: 
 
 ```
 forms:
@@ -187,13 +185,22 @@ forms:
 ```
 
 
-You can change the field label and the description of each option. But you have to keep the fieldname `captchaoptions` and the option-names `standard`, `aftererror` and `disabled`. Otherwise it will be ignored and the captcha will always show directly.
+You can change the field label and the description of each option. But you have to keep the fieldname `captchaoptions` and the option-names `standard`, `aftererror` and `disabled`, otherwise it will be ignored. The captcha is only displayed if one of the options is stored in the plugin settings, so it is a good idea to ship a default value in the settings block of your plugin configuration file:
+
+```
+settings:
+  captchaoptions: standard
+```
+
+Without the `captchaoptions` field (or without a stored value), no captcha is displayed and no captcha is enforced.
 
 ### Google Re-Captcha
 
 The traditional captcha field that ships with typemill (gregwar php captcha) does not rely on any external service and is a perfect solution without any privacy concerns. However, it is a bit difficult to read and solve and thus might lower the conversion of your forms. Also the protection might be lower because an image captcha can be solved by KI machines today.
 
-As an alternative you can also provide a google recaptcha where the user only has to check a checkbox in most cases. Be aware that it might have some privacy implications when you add it to a website. 
+As an alternative you can also provide a google recaptcha where the user only has to check a checkbox in most cases. Be aware that it might have some privacy implications when you add it to a website.
+
+**Important limitation:** The re-captcha widget is rendered in the frontend, but the server-side verification of the re-captcha response is not active in the current Typemill version. This means the re-captcha currently provides no real protection, so you should always combine it with the standard captcha or use the standard captcha alone.
 
 To add an option for google re-captcha in your plugin settings, please add the following fields: 
 
@@ -221,7 +228,7 @@ If you add google recaptcha to your plugin, you also have to add the standard ph
 
 ### Track Suspicious Actions
 
-In the developer settings of the admin area you can activate a feature that logs all (or most) actions that might result from attacks or spam bots. The log contains the IP address, the time and the action (like wrong captcha, wrong password, and more). You can activate and deactivate the log and you can delete the log with the button "recreate cache". 
+In the security section of the system settings you can activate a security log that tracks actions that might result from attacks or spam bots. The log contains the IP address, the time and the action (like wrong captcha, wrong password, and more). You can view and delete the log with the Kixote AI assistant in the author interface (commands "show security log" and "clear security log") or directly via the API endpoints `GET /api/v1/securitylog` and `DELETE /api/v1/securitylog` (requires the role "manager" or higher).
 
 ### IP-blocking
 

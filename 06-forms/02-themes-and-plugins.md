@@ -26,7 +26,7 @@ forms:
 ````
 
 
-This form-definition will add a selectbox called "layout" to the theme configuration. You can use all fields from the [field overview](/forms/field-overview).
+This form-definition will add a selectbox called "layout" to the plugin configuration (with the same definition in a theme it would add it to the theme configuration). You can use all fields from the [field overview](/forms/field-overview). The configuration forms are rendered with Vue.js, so the `help` attribute is not displayed and the `pattern` attribute is only used for the backend validation.
 
 ## Store Configurations
 
@@ -66,7 +66,7 @@ In the twig-templates of your theme you can use all stored configurations with t
 
 This will print out "edgeless".
 
-In your plugin you can use the stored values with the event `onSettingsLoaded`:
+In your plugin you can get the stored values of your plugin directly with the method `$this->getPluginSettings()`, or you can use all settings with the event `onSettingsLoaded`:
 
 ```
 <?php
@@ -93,9 +93,9 @@ class Example extends Plugin
         $this->settings = $settings->getData();
 
         # or use them directly in this method
-        $layout = $this->settings['settings']['plugins']['exampleplugin']['layout'];
+        $layout = $this->settings['plugins']['exampleplugin']['layout'];
     }
-
+}
 ```
 
 

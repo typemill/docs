@@ -4,11 +4,11 @@ Returns an item for an article with the relative url.
 
 ## Usage
 
-This is the prefered way to get an item if the relative url will not change. If a page is moved to another folder in the interface, then the relative url will change and the item will not be found. In this case use [get items](/api/getitems) to search for a slug instead of a relative url.
+This is the preferred way to get an item if the relative url will not change. If a page is moved to another folder in the interface, then the relative url will change and the item will not be found. In this case use [get items](/api/get-items) to search for a slug instead of a relative url.
 
 ## Authorization
 
-The minimum role for authorization is "author".
+All authenticated user roles are authorized for published pages. Unpublished pages are only visible to their owner and to users with the role "author" or higher; all other users get a `404` response. If a page is restricted to a user role or a list of users in the page metadata, all other users get a `403` response.
 
 ## Endpoint
 

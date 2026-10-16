@@ -1,4 +1,4 @@
-#  get items
+# get items
 
 Returns one or more items for articles with a slug.
 
@@ -8,7 +8,7 @@ This is the preferred way if articles are often moved to other folders. The rela
 
 ## Authorization
 
-The minimum role for authorization is "author".
+All authenticated user roles are authorized for published pages. Unpublished pages and pages with access restrictions in their metadata are filtered out of the response. If no accessible item remains, the endpoint returns a `404` response.
 
 ## Endpoint
 
@@ -21,6 +21,7 @@ GET /api/v1/article/items
 | Query parameter | Type   | Required? | Description   |
 |:----------------|:-------|:----------|:--------------|
 | slug            | string | required  | the slug       |
+| project         | string | optional  | project or language name, only needed in multilanguage or multiproject setups to search in that project. |
 
 ## Request Example
 

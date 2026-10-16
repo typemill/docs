@@ -1,6 +1,6 @@
 # get settings
 
-Get the system settings. This endpoint is probably not of interest, but you could 
+Get the system settings. This endpoint returns the full configuration of the Typemill installation, including the version, the active theme, plugin settings and more.
 
 ## Authorization
 
@@ -9,7 +9,7 @@ Minimum role for authorization is "manager".
 ## Endpoint
 
 ```http
-GET /api/v1/settings/
+GET /api/v1/settings
 ```
 
 ## Request Example

@@ -21,8 +21,7 @@ The minimum role for authorization is "administrator".
 ## Request Example
 
 ```curl
-curl -X GET 'http://localhost/typemill/api/v1/users/getbyemail?email=test@gmail.com
-'
+curl -X GET 'http://localhost/typemill/api/v1/users/getbyemail?email=test@gmail.com'
 ```
 
 ## Response Example

@@ -1,6 +1,6 @@
 # get navigation
 
-Returns an whole content navigation with all published pages or with all published and unpublished pages.
+Returns a whole content navigation with all published pages or with all published and unpublished pages.
 
 ## Usage
 
@@ -8,7 +8,7 @@ Get the whole content navigation as a multi-dimensional array of item objects. U
 
 ## Authorization
 
-The minimum role for authorization is "member".
+All authenticated user roles are authorized. The query parameter `draft=true` requires the role "author" or higher.
 
 ## Endpoint
 
@@ -20,7 +20,8 @@ GET /api/v1/navigation
 
 | Query parameter | Type | Required? | Description | 
 |:---|:---|:---|:---|
-| draft | bool | optional | `true` if you want to get the navigation with published and unpublished pages. | 
+| draft | bool | optional | `true` if you want to get the navigation with published and unpublished pages (drafts). Requires the role "author" or higher. | 
+| url | string | optional | A relative url, used only to detect the project or language in multilanguage or multiproject setups. | 
 
 ## Request Example
 

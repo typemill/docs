@@ -57,6 +57,7 @@ class Example extends Plugin
         {
             # make something green here
         }
+    }
 }
 ```
 
@@ -79,13 +80,13 @@ metatabs:
         label: Add some text
 ```
 
-If you activate the plugin, then you will already see a new tab called "mytab" for each page. 
+If you activate the plugin, then you will already see a new tab called "mytab" for each page. The tab works out of the box: Typemill renders all fields of the tab with a default vue-component and saves the input together with the other meta-data of the page.
 
-However, if you click on the tab, you will not see any forms yet. The reason is quite simple: Different to forms for plugins, themes or public pages, the forms for meta-tabs are rendered with Vue.js and not with PHP. In order to render the forms, you have to activate the vue form generator. This is done with a simple copy & paste.
+## Add a Custom Vue Component (optional)
 
-## Add the Vue Component
+You only need your own vue-component if you want to change the layout of the tab or add custom logic (like the eBook plugin does). The name of the component must start with the prefix `tab-` followed by the name of your tab in lowercase, for example `tab-mytab`. If no component with that name exists, Typemill automatically falls back to the default tab component.
 
-You can activate the vue form-generator in your plugin with a simple script (a vue-component). In the first step we add that script to the editor like this:
+To add a custom component, first load a script in the editor like this:
 
 ```
 <?php
@@ -96,7 +97,7 @@ class Example extends Plugin
     public static function getSubscribedEvents()
     {
         return array(
-            'onTwigLoaded'      => 'onTwigLoaded'
+            'onTwigLoaded'      => 'onTwigLoaded',
             'onMetaLoaded'      => 'onMetaLoaded'
         );
     }
@@ -104,7 +105,7 @@ class Example extends Plugin
     {
         if($this->editorroute)
         {
-                $this->addJS('/demo/js/editordemo.js');
+                $this->addJS('/example/js/metatab.js');
         }
     }
     public function onMetaLoaded($meta)
@@ -172,7 +173,7 @@ app.component('tab-mytab', {
 
 ```
 
-You can simply **copy and paste** this component, because the vue-component will always look the same. Just change the name of the component `Vue.component('tab-mytab', {})` to the name of your tab starting with the prefix "tab-". Please use an **unique name** for your tab, because there might be conflicts if another plugin uses the same name for a tab.
+You can simply **copy and paste** this component, because the vue-component will always look the same (it is a copy of the default tab component that Typemill uses as a fallback). Just change the name of the component `app.component('tab-mytab', {})` to the name of your tab starting with the prefix "tab-" followed by the tab name in lowercase. Please use an **unique name** for your tab, because there might be conflicts if another plugin uses the same name for a tab.
 
 This is what the vue component does:
 
@@ -181,7 +182,7 @@ This is what the vue component does:
 * It binds all neccessary data like the field-definitions, the errors, the name of the field and so on.
 * It adds a save button and messages for success and error.
 
-If you want to know how it works in detail, then check the file `vue-meta.js` in the folder `system/author/js`.
+If you want to know how it works in detail, then check the file `vue-meta.js` in the folder `system/typemill/author/js`.
 
 ## Extend the Vue Component
 
@@ -189,9 +190,8 @@ The vue-component above just renders the forms and adds a store-button. If you a
 
 ## Limitations
 
-The meta-tabs are flexible as hell, but the actual vue-form-builder has some limitations compared to public forms or to configuration-forms for plugins and themes:
+The meta-tabs are flexible as hell, but the actual vue-form-builder has some limitations compared to public forms:
 
-* You cannot add text with the field-type **paragraph**.
-* You cannot use the **help** text.
-* You can use attributes like **required** or **pattern** in your yaml-definition. They are used for the backend validation, but they have no effect in the frontend.
+* You cannot use the **help** text, it is only displayed in public forms.
+* The **pattern** attribute is only used for the backend validation and is not rendered as a HTML attribute in the frontend.
 

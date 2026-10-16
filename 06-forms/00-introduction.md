@@ -1,6 +1,6 @@
 # Forms with Typemill
 
-Whenever a user wants to customize something, he will probably do it with forms. TYPEMILL provides an easy and flexible way to generate such forms on the fly. Developers can define forms with simple YAML definitions and users (authors) can use such forms for different purposes:
+Whenever a user wants to customize something, he will probably do it with forms. Typemill provides an easy and flexible way to generate such forms on the fly. Developers can define forms with simple YAML definitions and users (authors) can use such forms for different purposes:
 
 * Use forms to configure a plugin.
 * Use forms to configure a theme.
@@ -9,7 +9,7 @@ Whenever a user wants to customize something, he will probably do it with forms.
 
 ## Basics
 
-You can define forms in the YAML configuration files of your [plugin](/plugin-developers/documentation/configuration-file) and your [theme](/theme-developers/theme-meta).
+You can define forms in the YAML configuration files of your [plugin](/plugin-developers/plugin-configuration) and your [theme](/theme-developers/configuration-file).
 
 A very simple form configuration looks like this:
 
