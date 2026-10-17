@@ -1,3 +1,5 @@
+# Playwright Setup
+
 Integrate a test folder and setup playwright for api and e2e tests. Use this as your initial setup:
 - tests/unit/ — PHPUnit (implement later)
 - tests/api/ — Playwright API tests

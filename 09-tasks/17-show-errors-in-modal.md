@@ -1,3 +1,5 @@
+# Show Errors in Modal Window
+
 As a non-technical user of Typemill, I want to see errors from api calls so I can report them on GitHub. 
 
 * If the error reporting is activated, then errors from api calls should be visible to a user in frontend. 

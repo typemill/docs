@@ -1,3 +1,5 @@
+# Multilanguage Fixes
+
 There are several errors and improvements for the multilanguage feature: 
 
 1. If I delete any page in the author environment, then the language switch in the frontend disappears. It only appears again if I create (and publish) a new page in a language folder. The same problem happens if I use the Kixote command "clear multilang", it does not recreate the index or at least does not show the language switch in the frontend again. Expected behavior: If a page gets deleted, the frontend switches for all other pages should still be visible and working, so the index should be recreated or updated correctly. Please check related older tasks for implementation details.

@@ -1,3 +1,5 @@
+# Multilanguage Language Page for Cyanine
+
 Yes. I would use a recursive or parent-aware configuration lookup combined with a merge, rather than replacing `settings.themes.cyanine` outright.
 
 Your idea is sound: on every page inside a project, resolve the metadata of that project's homepage and use it to override the relevant Cyanine theme settings. That way, `/it/deeper` inherits the Italian homepage's translations just like `/it`.
