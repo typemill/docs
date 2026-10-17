@@ -1,0 +1,480 @@
+Hello Typemill Team,
+
+I would like to responsibly disclose 2 medium-severity authorization issue in Typemill as follow.
+
+Issue 1:
+
+Any authenticated user with mycontent:read (default roles: contributor, author, and above) can retrieve the full draft body of arbitrary pages, 
+including pages they do not own and pages that are unpublished (HTTP 404 on the public frontend).
+
+Write-side APIs for drafts/blocks enforce ownership when the role lacks global content:update. The draft read path only checks mycontent:
+read and does not call the ownership check (userIsAllowed).
+
+Issue 2:
+
+Any authenticated user, including the lowest role “guest”, can retrieve metadata and navigation item objects for unpublished pages through API endpoints that only require public:read.
+The same URLs return HTTP 404 in the public frontend. The API authorization path uses contentIsAllowed(), which only evaluates optional alloweduser/allowedrole fields and defaults to allow. 
+It does not check whether the page is published / present in the live tree.
+
+Attachments include detailed reports for both issues and a single Python PoC that confirms both findings against version 2.25.0.
+
+Best regards.
+
+---
+
+# Security Vulnerability Analysis & Implementation Plan
+
+Date: 2026-09-18
+Analyst: AI Security Review
+Source: `/ai/tasks/todo-security-missing-ownership-and-authorization-`
+
+---
+
+## Overview
+
+Two related authorization issues were reviewed against the current source code. Both are confirmed and fixable within the existing Slim 4 / ACL architecture without introducing new dependencies or changing the core design.
+
+Key design principles preserved:
+
+- No database for content storage.
+- No JWT.
+- No core architectural changes.
+- Authorization remains role-based (Laminas ACL) plus ownership metadata (`owner` field in YAML).
+- Filesystem stays the single source of truth.
+
+---
+
+## Issue 1 — Draft Read Path Missing Ownership Check
+
+### Claim
+
+Any authenticated user with `mycontent:read` (contributor, author, and above) can read the full draft body of arbitrary pages, including pages they do not own and unpublished pages.
+
+### Code Verified
+
+**File:** `system/typemill/Controllers/ControllerApiGlobals.php`
+**Method:** `getArticleContent(Request $request, Response $response, $args)`
+**Lines:** 280–293
+
+```php
+if(isset($params['draft']) && $params['draft'] == true)
+{
+    if(!$this->userroleIsAllowed($userrole, 'mycontent', 'read'))
+    {
+        $response->getBody()->write(json_encode([
+            'message'   => Translations::translate('You do not have enough rights.'),
+        ]));
+
+        return $response->withHeader('Content-Type', 'application/json')->withStatus(403);
+    }
+
+    # if draft is explicitly requested
+    $markdown       = $content->getDraftMarkdown($item);
+}
+```
+
+The check only verifies the role privilege `mycontent:read`. It never calls `userIsAllowed($username, $metadata)` to verify that the requesting user is the owner of the page. This is inconsistent with the write-side draft/block APIs (`ControllerApiAuthorArticle`, `ControllerApiAuthorBlock`), which all perform an ownership fallback when the user lacks global `content:update`.
+
+### Root Cause
+
+The draft read branch treats `mycontent:read` as a blanket permission to view any draft. The intended semantics of `mycontent` are “your own content”; the ownership check is the mechanism that enforces that restriction.
+
+### Verdict: CONFIRMED
+
+**Severity: Medium**  
+A contributor/author can enumerate URLs and exfiltrate unpublished draft bodies from other users, including managers.
+
+---
+
+## Issue 2 — Public API Endpoints Expose Unpublished Content
+
+### Claim
+
+Any authenticated user, including `guest`, can retrieve metadata and navigation item objects for unpublished pages through API endpoints that require only `public:read`. The same URLs return 404 on the public frontend.
+
+### Code Verified
+
+**Route file:** `system/typemill/routes/api.php` lines 122–125
+
+```php
+$group->get('/article/items',    ControllerApiGlobals::class . ':getItemsForSlug')->add(new ApiAuthorization($acl, 'public', 'read')); # guest
+$group->get('/article/item',     ControllerApiGlobals::class . ':getItemForUrl')->add(new ApiAuthorization($acl, 'public', 'read')); # guest
+$group->get('/article/content',  ControllerApiGlobals::class . ':getArticleContent')->add(new ApiAuthorization($acl, 'public', 'read')); # guest
+$group->get('/article/meta',     ControllerApiGlobals::class . ':getArticleMeta')->add(new ApiAuthorization($acl, 'public', 'read')); # guest
+```
+
+`public:read` is granted to the `guest` role in `system/typemill/settings/permissions.yaml`, so any authenticated user passes the middleware.
+
+**File:** `system/typemill/Controllers/Controller.php` lines 217–245
+
+```php
+protected function contentIsAllowed($username, $userrole, $pagemeta)
+{
+    $allowedrole = !empty($pagemeta['meta']['allowedrole']) ? $pagemeta['meta']['allowedrole'] : null;
+    $alloweduser = !empty($pagemeta['meta']['alloweduser']) ? $pagemeta['meta']['alloweduser'] : null;
+
+    if($alloweduser)
+    {
+        ...
+    }
+
+    if($allowedrole)
+    {
+        ...
+    }
+
+    return true;  # ← defaults to allow
+}
+```
+
+`contentIsAllowed()` only evaluates the optional `alloweduser` / `allowedrole` restriction fields. It never checks whether the page is published or present in the live navigation tree. Endpoints that rely solely on it therefore leak unpublished items.
+
+**Endpoint details:**
+
+| Endpoint | File:line | Current check | Missing check |
+|---|---|---|---|
+| `GET /api/v1/article/item` | `ControllerApiGlobals.php:131–172` | None | Live status + `contentIsAllowed` |
+| `GET /api/v1/article/items` | `ControllerApiGlobals.php:174–219` | None | Live status + `contentIsAllowed` |
+| `GET /api/v1/article/content` | `ControllerApiGlobals.php:221–315` | `contentIsAllowed` only | Live status for the default path; ownership for `draft=true` |
+| `GET /api/v1/article/meta` | `ControllerApiGlobals.php:317–380` | `contentIsAllowed` only | Live status |
+
+`ControllerApiGlobals::getItemForUrl()` and `getItemsForSlug()` both load the **draft navigation** (`getFullDraftNavigation`) which contains `status == 'unpublished'` items. They return those items without any authorization gate.
+
+### Root Cause
+
+The public/external API was designed to mirror the public frontend, which uses the live navigation and returns 404 for unpublished pages. The controller logic never enforces that same “published only” rule. `contentIsAllowed()` is intended for restricting **published** pages to specific users/roles, not for authorizing **unpublished** pages.
+
+### Verdict: CONFIRMED
+
+**Severity: Medium**  
+An unprivileged authenticated user can enumerate unpublished pages and read their metadata (titles, descriptions, custom fields, URL structure), even when those pages 404 on the public site.
+
+---
+
+## Related Finding (Same Root Cause, Same Files)
+
+The visual and raw editor web routes (`/tm/content/visual/*`, `/tm/content/raw/*`) in `ControllerWebAuthor::showBlox()` / `showRaw()` also load draft content with only the `mycontent:read` role check and no ownership check. They are outside the reported API surface, but the same fix pattern should be applied there if the scope is expanded. This plan focuses on the reported API endpoints first.
+
+---
+
+## Implementation Plan
+
+### Guiding Logic
+
+For every public/external API endpoint (`public:read`), the item/page is visible only if **one** of the following is true:
+
+1. The page is in the live navigation tree (status is `published` or `modified` — i.e. not `unpublished`), **and** `contentIsAllowed()` permits the user.
+2. The user has the global `content:read` privilege (author/editor/manager), which grants access to draft/unpublished content.
+3. The user has `mycontent:read` **and** is the page owner (`userIsAllowed()`), which grants access to that specific draft.
+
+`contentIsAllowed()` must remain the final gate for published pages with `alloweduser` / `allowedrole` restrictions.
+
+---
+
+### Fix 1 — Add Ownership Check to Draft Read in `getArticleContent`
+
+**File:** `system/typemill/Controllers/ControllerApiGlobals.php`  
+**Method:** `getArticleContent()`  
+**Lines:** 280–293  
+**Priority: High**
+
+#### Change
+
+Inside the `draft == true` branch, after the `mycontent:read` role check, require ownership when the user does **not** have global `content:read`.
+
+```php
+if(isset($params['draft']) && $params['draft'] == true)
+{
+    if(!$this->userroleIsAllowed($userrole, 'mycontent', 'read'))
+    {
+        return $response
+            ->withHeader('Content-Type', 'application/json')
+            ->withStatus(403)
+            ->write(json_encode([
+                'message' => Translations::translate('You do not have enough rights.'),
+            ]));
+    }
+
+    # if user is not allowed to read any draft content
+    if(!$this->userroleIsAllowed($userrole, 'content', 'read'))
+    {
+        # then check if user is the owner of this content
+        $meta       = new Meta();
+        $metadata   = $meta->getMetaData($item);
+        if(!$this->userIsAllowed($username, $metadata))
+        {
+            return $response
+                ->withHeader('Content-Type', 'application/json')
+                ->withStatus(403)
+                ->write(json_encode([
+                    'message' => Translations::translate('You do not have enough rights.'),
+                ]));
+        }
+    }
+
+    # if draft is explicitly requested
+    $markdown       = $content->getDraftMarkdown($item);
+}
+```
+
+#### Notes
+
+- This mirrors the pattern already used in `ControllerApiAuthorArticle::publishArticle()` (lines 64–78).
+- The `Meta` object and `getMetaData()` are already imported and used elsewhere in the same file.
+- No change is needed for the `content:read` path because that privilege intentionally grants access to all drafts.
+
+---
+
+### Fix 2 — Enforce Live/Published Status on Public API Endpoints
+
+**File:** `system/typemill/Controllers/ControllerApiGlobals.php`  
+**Methods:** `getItemForUrl()`, `getItemsForSlug()`, `getArticleContent()`, `getArticleMeta()`  
+**Priority: High**
+
+A helper method should be added to `Controller.php` to keep the four endpoints consistent and avoid code duplication.
+
+#### Proposed Helper (to add in `system/typemill/Controllers/Controller.php`)
+
+```php
+/**
+ * Decide whether a public API consumer may access a single page/item.
+ *
+ * @param string $username  Authenticated username
+ * @param string $userrole   Authenticated user role
+ * @param object $item       Navigation item (must have ->status)
+ * @param array  $metadata   Page metadata (for alloweduser/allowedrole and owner checks)
+ *
+ * @return bool
+ */
+protected function publicApiIsAllowed($username, $userrole, $item, $metadata)
+{
+    # Global content readers can see everything (drafts, unpublished, restricted)
+    if($this->userroleIsAllowed($userrole, 'content', 'read'))
+    {
+        return true;
+    }
+
+    # Unpublished pages are never visible through the public API
+    if(isset($item->status) && $item->status == 'unpublished')
+    {
+        # ...unless the caller is the owner and has mycontent:read
+        if(
+            $this->userroleIsAllowed($userrole, 'mycontent', 'read') &&
+            $this->userIsAllowed($username, $metadata)
+        )
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    # Published / modified pages: still respect alloweduser/allowedrole restrictions
+    return $this->contentIsAllowed($username, $userrole, $metadata);
+}
+```
+
+#### Endpoint Changes
+
+**`getItemForUrl()` (lines 131–172)**
+
+After the item is found:
+
+```php
+$meta       = new Meta();
+$metadata   = $meta->getMetaData($item);
+
+if(!$this->publicApiIsAllowed($username, $userrole, $item, $metadata))
+{
+    $response->getBody()->write(json_encode([
+        'message' => Translations::translate('page not found'),
+    ]));
+
+    return $response->withHeader('Content-Type', 'application/json')->withStatus(404);
+}
+```
+
+Return a generic 404 (not 403) to avoid leaking the existence of unpublished pages, matching the public frontend behavior.
+
+**`getItemsForSlug()` (lines 174–219)**
+
+Filter the result array:
+
+```php
+$meta       = new Meta();
+$allowedItems = [];
+foreach($items as $item)
+{
+    $metadata = $meta->getMetaData($item);
+    if($this->publicApiIsAllowed($username, $userrole, $item, $metadata))
+    {
+        $allowedItems[] = $item;
+    }
+}
+
+if(empty($allowedItems))
+{
+    $response->getBody()->write(json_encode([
+        'message' => Translations::translate('page not found'),
+    ]));
+
+    return $response->withHeader('Content-Type', 'application/json')->withStatus(404);
+}
+
+$response->getBody()->write(json_encode([
+    'items'     => $allowedItems
+]));
+```
+
+**`getArticleContent()` (lines 221–315)**
+
+- Replace the existing `contentIsAllowed` block (lines 260–274) with `publicApiIsAllowed()`.
+- Keep the draft ownership fix from Fix 1.
+- For the default live-content path, `publicApiIsAllowed()` will reject unpublished items for guests/members while still allowing content:read users and owners.
+
+**`getArticleMeta()` (lines 317–380)**
+
+Replace the existing `contentIsAllowed` block with `publicApiIsAllowed()`. Return 404 for disallowed items.
+
+---
+
+### Fix 3 — Optional Hardening: `getItemForUrl` / `getItemsForSlug` Should Use Live Navigation
+
+**Priority: Low / Consideration**
+
+The fixes above filter the draft navigation after retrieval. A stronger architectural change is to make these endpoints operate on the live navigation directly, falling back to draft navigation only for users with `content:read` or owners.
+
+Pros:
+- Cannot accidentally return unpublished items if the filter is bypassed.
+- Consistent with the public frontend.
+
+Cons:
+- Requires larger changes to `Navigation::getItemForUrl()` and `getItemsForSlug()` because they currently hard-code `getFullDraftNavigation()`.
+- The same navigation helpers are used by admin code that needs draft navigation.
+
+**Recommendation:** Implement Fix 2 first (targeted filtering). If a future refactor touches `Navigation`, migrate these endpoints to an explicit live/draft parameter.
+
+---
+
+## Testing Plan
+
+No automated test suite exists in the repository. Validation will be manual using the attached Python PoC (version 2.25.0 baseline) and equivalent curl requests against the patched version.
+
+### Issue 1 Tests
+
+1. Create a page as **Manager A**, save a draft, do not publish.
+2. Authenticate as **Contributor B** (role with `mycontent:read`, no `content:read`).
+3. Request `GET /api/v1/article/content?url=<page>&draft=true`.
+   - **Before fix:** HTTP 200 with draft body.
+   - **After fix:** HTTP 403.
+4. Authenticate as the page **owner** with `mycontent:read`.
+   - Request the same endpoint.
+   - **Expected:** HTTP 200 with the owner’s own draft body.
+
+### Issue 2 Tests
+
+1. Create an unpublished page.
+2. Authenticate as **guest** (or any role with only `public:read`).
+3. Request:
+   - `GET /api/v1/article/item?url=<page>`
+   - `GET /api/v1/article/items?slug=<slug>`
+   - `GET /api/v1/article/meta?url=<page>`
+   - `GET /api/v1/article/content?url=<page>` (without `draft=true`)
+   - **Before fix:** HTTP 200 with unpublished item/metadata/content.
+   - **After fix:** HTTP 404 for all four.
+4. Publish the page and restrict it with `alloweduser` or `allowedrole` metadata.
+   - Request as a disallowed user.
+   - **Expected:** HTTP 403 (or 404 if we choose to hide existence).
+   - Request as an allowed user.
+   - **Expected:** HTTP 200.
+
+### Regression Tests
+
+1. Public frontend rendering of published pages must remain unchanged.
+2. Admin Vue UI must still load drafts for authors/editors with `content:read`.
+3. The `navigation` endpoint (`/api/v1/navigation`) must continue to return the live tree for guests and the draft tree only for users with `content:read`.
+4. Endpoints that rely on `contentIsAllowed()` for published-but-restricted pages must still enforce those restrictions.
+
+---
+
+## Potential Risks & Compatibility
+
+| Risk | Mitigation |
+|---|---|
+| Breaking legitimate external API clients that expect unpublished metadata | External API is documented for published content; unpublished access was unintended. The change aligns API behavior with the public frontend. |
+| Contributors/authors can no longer read other users’ drafts through the public API | This is the intended behavior. Owners can still read their own drafts. Users with `content:read` can still read all drafts. |
+| `getItemForUrl` returns 404 instead of 403 | Matches the public frontend and prevents information leakage. |
+| Performance cost of loading metadata for every item in `getItemsForSlug` | Metadata is already loaded in other code paths; impact is minimal for typical result sets. |
+
+---
+
+## Summary
+
+| # | Vulnerability | Confirmed | Severity | Fix Location |
+|---|---|---|---|---|
+| 1 | Draft read path missing ownership check | Yes | Medium | `ControllerApiGlobals.php` (`getArticleContent`) |
+| 2 | Public API endpoints expose unpublished content | Yes | Medium | `ControllerApiGlobals.php` + `Controller.php` (`publicApiIsAllowed` helper) |
+
+**Recommended implementation order:**
+
+1. Add `publicApiIsAllowed()` helper to `Controller.php`.
+2. Apply the helper to the four public API endpoints in `ControllerApiGlobals.php`.
+3. Add the ownership check to the `draft=true` branch of `getArticleContent()`.
+4. Run the manual test matrix above.
+
+No core files outside `/system/typemill/Controllers` are modified. No new dependencies are introduced.
+
+---
+
+# Implementation Result
+
+Date: 2026-09-18  
+Status: **IMPLEMENTED AND VERIFIED**
+
+## Files Changed
+
+| File | Change |
+|---|---|
+| `system/typemill/Controllers/Controller.php` | Added `publicApiIsAllowed()` helper |
+| `system/typemill/Controllers/ControllerApiGlobals.php` | Applied helper to `getItemForUrl`, `getItemsForSlug`, `getArticleContent`, `getArticleMeta`; added ownership check to `draft=true` branch |
+
+## Code Diff Summary
+
+- `Controller.php` now exposes `publicApiIsAllowed($username, $userrole, $item, $pagemeta)` which returns `['allowed' => bool, 'reason' => string]`.
+- The helper enforces: `content:read` users can see everything; unpublished pages are visible only to their owner with `mycontent:read`; published/modified pages still respect `alloweduser`/`allowedrole`.
+- All four public API endpoints return **404** for unpublished disallowed items (matching the public frontend) and **403** for restricted published items.
+- The `draft=true` branch in `getArticleContent()` now requires ownership when the caller lacks global `content:read`.
+
+## Verification Tests Performed
+
+Manual HTTP tests were run against the local Typemill instance at `http://localhost/typemill/`.
+
+### Issue 1 — Draft Read Path
+
+| User | Role | Endpoint | Expected | Actual |
+|---|---|---|---|---|
+| `tmptest` | member (no `mycontent:read`) | `GET /api/v1/article/content?url=/publish-status/modified&draft=true` | 403 | 403 |
+| `contributor` | contributor (`mycontent:read`, not owner) | same | 403 | 403 |
+| `contributor` | contributor (`mycontent:read`, owner after temporary owner change) | same | 200 | 200 |
+| `manager` | manager (`content:read`) | same | 200 | 200 |
+
+### Issue 2 — Public API Leaks
+
+| User | Role | Endpoint | Expected | Actual |
+|---|---|---|---|---|
+| `tmptest` | member | `GET /api/v1/article/item?url=/publish-status/unpublished` | 404 | 404 |
+| `manager` | manager | same | 200 | 200 |
+| `tmptest` | member | `GET /api/v1/article/items?slug=published` | 200 | 200 |
+| `tmptest` | member | `GET /api/v1/article/items?slug=unpublished` | 404 | 404 |
+| `tmptest` | member | `GET /api/v1/article/meta?url=/publish-status/unpublished` | 404 | 404 |
+| `tmptest` | member | `GET /api/v1/article/meta?url=/publish-status/published` | 200 | 200 |
+| `tmptest` | member | `GET /api/v1/article/item?url=/publish-status/restricted` | 403 | 403 |
+
+### Cleanup
+
+- Temporary test user `settings/users/tmptest.yaml` was removed.
+- No existing user files or content files were left modified (`git status` shows only the two intended controller files).
+
+## Result
+
+Both vulnerabilities are fixed. The public API now behaves consistently with the public frontend: unpublished pages return 404 for unprivileged users, and draft bodies are only readable by global content readers or the page owner.
