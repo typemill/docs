@@ -1,3 +1,0 @@
-# Add OpenApi Specs
-
-Description

@@ -1,3 +1,0 @@
-# PHP Unit Setup
-
-Description

@@ -1,3 +1,0 @@
-# Publish QRCode Plugin
-
-Description
