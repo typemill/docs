@@ -85,5 +85,6 @@ The response examples on this page are shortened. The `url` field is always `fal
 |---|---|
 | 400 | Missing or invalid parameters. | 
 | 402 | A page with this name already exists in the folder, or the name is reserved (e.g. `tm` on root level). | 
+| 403 | The destination folder is outside the folders the user is restricted to (folder access), e.g. the root level. | 
 | 404 | The parent folder was not found or is not a folder. | 
 

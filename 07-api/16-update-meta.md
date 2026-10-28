@@ -10,7 +10,7 @@ To find out which tabs and fields exist in your installation, use the author end
 
 ## Authorization
 
-The minimum role for authorization is "contributor". Users with the role "contributor" and "author" can only update the metadata of pages they own (listed in the `owner` field of the page metadata), users with the role "editor" or higher can update all pages.
+The minimum role for authorization is "contributor". Users with the role "contributor" and "author" can only update the metadata of pages they own (listed in the `owner` field of the page metadata), users with the role "editor" or higher can update all pages. Users with folder restrictions can only update pages inside their allowed folders.
 
 ## Endpoint
 
@@ -61,5 +61,6 @@ The response example is shortened.
 | Status code | Description | 
 |---|---|
 | 400 | Missing or invalid parameters, or the field values in `data` did not pass the field validation. The response contains an `errors` object with details. | 
+| 403 | The user is not allowed to update this page, e.g. a contributor or author who is not the owner of the page, or the page is outside the folders the user is restricted to (folder access). | 
 | 404 | The page or the meta-tab was not found. | 
 

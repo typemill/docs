@@ -70,3 +70,11 @@ The response contains the updated item, the refreshed draft navigation and the d
 
 The response example is shortened. The status of the item changes to `modified` once you update the draft of a published page.
 
+## Error responses
+
+| Status code | Description | 
+|---|---|
+| 400 | Missing or invalid parameters, e.g. neither `markdown` nor `title` and `body` are given, or the markdown contains html. The response contains an `errors` object with details. | 
+| 403 | The user is not allowed to update this page, e.g. an author who is not the owner of the page, or the page is outside the folders the user is restricted to (folder access). | 
+| 404 | The page was not found. | 
+

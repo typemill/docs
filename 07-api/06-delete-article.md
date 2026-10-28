@@ -42,3 +42,11 @@ The response contains a redirect url to the parent item, which is used by the au
 }
 ```
 
+## Error responses
+
+| Status code | Description | 
+|---|---|
+| 400 | Missing or invalid parameters, e.g. no `item_id`. The response contains an `errors` object with details. | 
+| 403 | The page is outside the folders the user is restricted to (folder access). | 
+| 404 | The page was not found. | 
+

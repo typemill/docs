@@ -73,7 +73,7 @@ curl -X GET 'http://localhost/typemill/api/v1/article/content?url=/getting-start
 
 ## Response Example (raw markdown)
 
-For published pages the raw format returns the original markdown file unchanged:
+For published pages the raw format returns the original markdown file unchanged. For drafts (`draft=true`), the saved blocks are joined back into a single markdown string, so you can update the draft with the same string in [update draft](/api/update-draft):
 
 ```json
 {

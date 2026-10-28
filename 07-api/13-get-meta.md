@@ -73,4 +73,4 @@ The author interface uses another endpoint that returns the metadata together wi
 GET /api/v1/meta?url=/getting-started
 ```
 
-This endpoint requires the role "contributor" or higher and returns the keys `metadata` and `metadefinitions`. Use `GET /api/v1/article/meta` if you only need the metadata values of a page.
+This endpoint requires the role "contributor" or higher and returns the keys `metadata` and `metadefinitions`. Contributors can only read the metadata of pages they own, and users with folder restrictions can only read pages inside their allowed folders; all other pages return a `403` response. Unknown pages return a `404` response. Use `GET /api/v1/article/meta` if you only need the metadata values of a page.

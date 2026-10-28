@@ -10,6 +10,8 @@ Get the whole content navigation as a multi-dimensional array of item objects. U
 
 All authenticated user roles are authorized. The query parameter `draft=true` requires the role "author" or higher.
 
+If a user is restricted to certain folders with the "Folder Access" setting in the user profile, the draft navigation contains only the folders this user is allowed to access.
+
 ## Endpoint
 
 ```http

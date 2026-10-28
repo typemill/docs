@@ -20,7 +20,7 @@ POST /api/v1/article/publish
 
 | Body parameter | Type | Required? | Description | 
 |:---|:---|:---|:---|
-| item_id | string | required | The internal keypath of the page (e.g. `0.4`). Can be an empty string for the startpage. You can find keypaths in the response of [get navigation](/api/get-navigation). | 
+| item_id | string | required | The internal keypath of the page (e.g. `0.4`). For the startpage, send an empty string. You can find keypaths in the response of [get navigation](/api/get-navigation). |
 | url | string | required | The relative url of the page. | 
 
 ## Request Example
@@ -58,4 +58,12 @@ The response contains the refreshed draft navigation, the published item and its
 ```
 
 The response example is shortened.
+
+## Error responses
+
+| Status code | Description | 
+|---|---|
+| 400 | Missing or invalid parameters, e.g. no `item_id`. The response contains an `errors` object with details. | 
+| 403 | The page is outside the folders the user is restricted to (folder access). | 
+| 404 | The page was not found. | 
 

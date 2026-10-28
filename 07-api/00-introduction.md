@@ -68,6 +68,7 @@ Permissions are determined by the user's role (`administrator`, `manager`, `edit
 | GET /article/meta | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ | 
 | GET /article/item | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ | 
 | GET /article/items | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ | 
+| GET /meta | ✔ | ✔ | ✔ | ✔ | ✔ |  |  | 
 | GET /settings | ✔ | ✔ |  |  |  |  |  | 
 | GET /users/getbynames | ✔ |  |  |  |  |  |  | 
 | GET /users/getbyemail | ✔ |  |  |  |  |  |  | 
@@ -86,6 +87,7 @@ Some additional rules apply on top of the role check:
 * **Read endpoints** (`/navigation`, `/article/*`): unpublished pages are only visible to their owner and to users with the role `author` or higher. Other users get a `404` response. Pages that are restricted to a user role or a list of users in the page metadata return `403` for everyone else.
 * **Draft data**: the query parameter `draft=true` requires the role `contributor` or higher, and users below `author` can only access drafts of their own pages. For `/navigation?draft=true` the role `author` or higher is required.
 * **Write endpoints**: users with the role `author` can create pages and folders, but they can only update and publish pages they own (they are listed in the `owner` field of the page metadata). Users with the role `editor` or higher can change all pages.
+* **Folder restrictions**: users who are limited to certain folders with the "Folder Access" setting in their user profile can only read and write inside these folders. This is enforced on all author endpoints (create, sort and move, publish, update, delete, blocks and meta); writes outside the allowed folders return a `403` response. The draft navigation (`/navigation?draft=true`) contains only the allowed folders for such users. Entries in the folder access list match a url and all its subpages, so an entry like `de/news` grants `/de/news` and its subpages but not the whole `de` project.
 * **POST /meta**: users with the role `contributor` can update the metadata of their own pages, users with the role `editor` or higher can update all pages.
 
 ## Trusted IPs and Hosts
@@ -113,6 +115,7 @@ Typemill does not support CORS headers, meaning the API cannot be accessed direc
 | /api/v1/article/meta | get | Get the metadata (tabs) of a page. | 
 | /api/v1/article/item | get | Get the item for a relative url. | 
 | /api/v1/article/items | get | Get the item(s) for a slug. | 
+| /api/v1/meta | get | Get the metadata and meta-definitions of a page (author endpoint). | 
 | /api/v1/users/getbynames | get | Get a list of users with a name or part of a name | 
 | /api/v1/users/getbyemail | get | Get a list of users with an email or part of an email | 
 | /api/v1/users/getbyrole | get | Get a list of users with a certain userrole | 
