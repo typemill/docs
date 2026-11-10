@@ -8,7 +8,7 @@ This is the preferred way if articles are often moved to other folders. The rela
 
 ## Authorization
 
-All authenticated user roles are authorized for published pages. Unpublished pages and pages with access restrictions in their metadata are filtered out of the response. If no accessible item remains, the endpoint returns a `404` response.
+All authenticated user roles are authorized for published pages. Unpublished pages and pages with access restrictions in their metadata are filtered out of the response. If no accessible item remains, the endpoint returns a `404` response. Users that are restricted to certain folders with the folderaccess setting only get items within their assigned folders.
 
 ## Endpoint
 

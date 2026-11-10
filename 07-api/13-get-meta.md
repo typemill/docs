@@ -4,7 +4,7 @@ Returns the meta data of an article that are stored in the meta-tabs.
 
 ## Authorization
 
-All authenticated user roles are authorized for published pages. Unpublished pages are only visible to their owner and to users with the role "author" or higher; all other users get a `404` response. If a page is restricted to a user role or a list of users in the page metadata, all other users get a `403` response.
+All authenticated user roles are authorized for published pages. Unpublished pages are only visible to their owner and to users with the role "author" or higher; all other users get a `404` response. If a page is restricted to a user role or a list of users in the page metadata, all other users get a `403` response. Users that are restricted to certain folders with the folderaccess setting get a `403` response for pages outside their assigned folders.
 
 ## Endpoint
 
