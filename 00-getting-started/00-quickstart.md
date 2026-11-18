@@ -1,6 +1,6 @@
 #  Quickstart
 
-Get started with Typemill quickly and easily! This guide will help you set up your first project in no time. update
+Get started with Typemill quickly and easily! This guide will help you set up your first project in no time.
 
 ## Install Typemill
 
